@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Moje Recepty</string>
+    <string name="prevod_jednotiek">Prevod jednotiek</string>
+    <string name="mnozstvo_v_gram">Množstvo v gramoch</string>
+    <string name="mnozstvo_v_hrncek">Množstvo v hrnčekoch</string>
+    <string name="vysledok_v_gram">Výsledok v gramoch: %s</string>
+    <string name="vysledok_v_hrncek">Výsledok v hrnčekoch: %s</string>
+    <string name="zaokruhlenie">Zaokruhlenie</string>
+</resources>
