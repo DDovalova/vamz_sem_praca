@@ -1,5 +1,6 @@
 package com.example.vamz_sem_praca
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +32,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Switch
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 
 /*
 Podobný návrh z cvičenia 5
@@ -55,10 +58,23 @@ class PrevodHnaG {
         ) {
             Text(
                 text = stringResource(R.string.prevod_jednotiek),
+                fontSize = 30.sp,
+                modifier = androidx.compose.ui.Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .background(Color.Yellow)
+                    .fillMaxWidth()
+                    .padding(
+                        top = 8.dp,
+                        start = 50.dp
+                    )
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            /*Text(
+                text = stringResource(R.string.prevod_jednotiek),
                 modifier = Modifier
                     .padding(bottom = 16.dp, top = 40.dp)
                     .align(alignment = Alignment.Start)
-            )
+            )*/
             EditNumberField(
                 value = vlozenaHod,
                 onValueChange = { vlozenaHod = it },

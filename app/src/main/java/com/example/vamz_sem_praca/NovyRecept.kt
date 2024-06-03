@@ -1,5 +1,6 @@
 package com.example.vamz_sem_praca
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,13 +21,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import java.lang.reflect.Modifier
+
 /*
+*
 */
 
 class NovyRecept {
@@ -41,15 +46,28 @@ class NovyRecept {
                 .verticalScroll(rememberScrollState())
                 .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
             Text(
+                text = stringResource(R.string.novy_recept),
+                fontSize = 30.sp,
+                modifier = androidx.compose.ui.Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .background(Color.Yellow)
+                    .fillMaxWidth()
+                    .padding(
+                        top = 8.dp,
+                        start = 60.dp
+                    )
+            )
+            Spacer(modifier = androidx.compose.ui.Modifier.height(20.dp))
+            /*Text(
                 text = stringResource(R.string.novy_recept),
                 //style = MaterialTheme.typography.displaySmall,
                 modifier = androidx.compose.ui.Modifier
                     .padding(bottom = 16.dp, top = 40.dp)
                     .align(alignment = Alignment.Start)
-            )
+            )*/
             VytvorRecept(
                 value = vlozText,
                 onValueChange = { vlozText = it },

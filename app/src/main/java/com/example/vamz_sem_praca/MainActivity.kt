@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                    //PrevodGnaH().PrevodJednotiekGram()
                    //PrevodHnaG().PrevodJednotiekHrncek()
-                   NovyRecept().VytvorRecepty()
+                   //NovyRecept().VytvorRecepty()
+                   Obed().KategoriePreview()
                 }
             }
         }
