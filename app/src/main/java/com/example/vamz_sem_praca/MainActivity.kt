@@ -21,8 +21,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   PrevodGnaH().PrevodJednotiekGram()
+                   //PrevodGnaH().PrevodJednotiekGram()
                    //PrevodHnaG().PrevodJednotiekHrncek()
+                   NovyRecept().VytvorRecepty()
                 }
             }
         }
