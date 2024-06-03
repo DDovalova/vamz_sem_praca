@@ -26,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import java.lang.reflect.Modifier
+/*
+*/
 
 class NovyRecept {
     @Composable
