@@ -31,9 +31,15 @@ import java.text.NumberFormat
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Switch
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 /*
 Podobný návrh z cvičenia 5
@@ -54,27 +60,10 @@ class PrevodHnaG {
                 .verticalScroll(rememberScrollState())
                 .safeDrawingPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
-            Text(
-                text = stringResource(R.string.prevod_jednotiek),
-                fontSize = 30.sp,
-                modifier = androidx.compose.ui.Modifier
-                    .align(alignment = Alignment.CenterHorizontally)
-                    .background(Color.Yellow)
-                    .fillMaxWidth()
-                    .padding(
-                        top = 8.dp,
-                        start = 50.dp
-                    )
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            /*Text(
-                text = stringResource(R.string.prevod_jednotiek),
-                modifier = Modifier
-                    .padding(bottom = 16.dp, top = 40.dp)
-                    .align(alignment = Alignment.Start)
-            )*/
+            VrchnyPanel()
+            Spacer(modifier = Modifier.height(100.dp))
             EditNumberField(
                 value = vlozenaHod,
                 onValueChange = { vlozenaHod = it },
@@ -130,6 +119,26 @@ class PrevodHnaG {
                     .wrapContentWidth(Alignment.End),
                 checked = roundUp,
                 onCheckedChange = onRoundUpChanged,
+            )
+        }
+    }
+
+    @Composable
+    fun VrchnyPanel() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Yellow)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center, //SpaceBetween
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = { }) {
+                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+            }
+            androidx.compose.material3.Text(
+                text = stringResource(R.string.prevod_jednotiek),
+                style = MaterialTheme.typography.headlineMedium
             )
         }
     }

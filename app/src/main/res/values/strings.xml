@@ -17,6 +17,7 @@
     <string name="napis_postup">Napíš postup</string>
     <string name="poznamky">POZNÁMNKY</string>
     <string name="napis_poznamky">Napíš poznámky</string>
+    <string name="vytvorit">Vytvoriť</string>
     //Pre stranu Kategorie
     <string name="ranajky">RANAJKY</string>
     <string name="obed">OBED</string>
@@ -24,5 +25,14 @@
     <string name="paradajkova_polievka">Paradajková polievka</string>
     <string name="milkshake">Milkshake</string>
     <string name="lievance">Lievance</string>
+    //Pre hlavnu stranu
+    <string name="hl_strana">Hlavná strana</string>
+    <string name="tlacislo_spat">Späť</string>
+
+
+    <string name="pridaj">Pridaj</string>
+    <string name="zaciname">Začíname!</string>
+
+
 
 </resources>

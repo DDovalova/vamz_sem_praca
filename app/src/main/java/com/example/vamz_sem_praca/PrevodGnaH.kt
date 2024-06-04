@@ -15,6 +15,10 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -27,11 +31,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import java.text.NumberFormat
 
@@ -56,26 +63,8 @@ class PrevodGnaH {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Text(
-                text = stringResource(R.string.prevod_jednotiek),
-                fontSize = 30.sp,
-                modifier = androidx.compose.ui.Modifier
-                    .align(alignment = Alignment.CenterHorizontally)
-                    .background(Color.Yellow)
-                    .fillMaxWidth()
-                    .padding(
-                        top = 8.dp,
-                        start = 50.dp
-                    )
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-           /* Text(
-                text = stringResource(R.string.prevod_jednotiek),
-                //style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier
-                    .padding(bottom = 16.dp, top = 40.dp)
-                    .align(alignment = Alignment.Start)
-            )*/
+            VrchnyPanel()
+            Spacer(modifier = Modifier.height(100.dp))
             EditNumberField(
                 value = vlozenaHod,
                 onValueChange = { vlozenaHod = it },
@@ -131,6 +120,26 @@ class PrevodGnaH {
                     .wrapContentWidth(Alignment.End),
                 checked = roundUp,
                 onCheckedChange = onRoundUpChanged,
+            )
+        }
+    }
+
+    @Composable
+    fun VrchnyPanel() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Yellow)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center, //SpaceBetween
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = { }) {
+                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+            }
+            androidx.compose.material3.Text(
+                text = stringResource(R.string.prevod_jednotiek),
+                style = MaterialTheme.typography.headlineMedium
             )
         }
     }
