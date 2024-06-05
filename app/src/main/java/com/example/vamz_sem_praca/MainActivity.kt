@@ -21,13 +21,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    UvodnaStrana().UvodnaStranaPreview()
-                  //PrevodGnaH().PrevodJednotiekGram()
-                  //PrevodHnaG().PrevodJednotiekHrncek()
-                  //NovyRecept().VytvorRecepty()
-                  //Obed().ObedPreview()
-
-
+                    //UvodnaStrana().UvodnaStranaPreview()
+                    //PrevodGnaH().PrevodJednotiekGram()
+                    //PrevodHnaG().PrevodJednotiekHrncek()
+                    //NovyRecept().VytvorRecepty()
+                    //Obed().ObedPreview()
+                    //HlavnaStrana().HlavnaStranaPreview()
+                    Navigacia()
                 }
             }
         }

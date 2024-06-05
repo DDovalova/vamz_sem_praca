@@ -39,6 +39,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import androidx.compose.ui.Modifier //!
 
@@ -48,8 +50,12 @@ import androidx.compose.ui.Modifier //!
 
 class NovyRecept {
     @Composable
-    fun VytvorRecepty() {
-        var vlozText by remember { mutableStateOf("") }
+    fun VytvorRecepty(navController: NavHostController) {
+        var receptText by remember { mutableStateOf("") }
+        var surovinaText by remember { mutableStateOf("") }
+        var mnozstvoText by remember { mutableStateOf("") }
+        var postupText by remember { mutableStateOf("") }
+        var poznamkyText by remember { mutableStateOf("") }
 
         Column(
             modifier = androidx.compose.ui.Modifier
@@ -63,8 +69,8 @@ class NovyRecept {
             VrchnyPanel()
             Spacer(modifier = Modifier.height(20.dp))
             VytvorRecept(
-                value = vlozText,
-                onValueChange = { vlozText = it },
+                value = receptText,
+                onValueChange = { receptText = it },
                 modifier = androidx.compose.ui.Modifier
                     .padding(bottom = 32.dp)
                     .fillMaxWidth()
@@ -76,8 +82,10 @@ class NovyRecept {
                     .align(alignment = Alignment.Start)
             )
             VytvorSurovinu(
-                value = vlozText,
-                onValueChange = { vlozText = it },
+                surovinaValue  = surovinaText,
+                onSurovinaChange  = { surovinaText = it },
+                mnozstvoValue = mnozstvoText,
+                onMnozstvoChange = { mnozstvoText = it },
                 modifier = androidx.compose.ui.Modifier
                     .padding(bottom = 32.dp)
                     .fillMaxWidth()
@@ -89,8 +97,8 @@ class NovyRecept {
                     .align(alignment = Alignment.Start)
             )
             VytvorPostup(
-                value = vlozText,
-                onValueChange = { vlozText = it },
+                value = postupText,
+                onValueChange = { postupText = it },
                 modifier = androidx.compose.ui.Modifier
                     .padding(bottom = 32.dp)
                     .fillMaxWidth()
@@ -102,8 +110,8 @@ class NovyRecept {
                     .align(alignment = Alignment.Start)
             )
             VytvorPoznamky(
-                value = vlozText,
-                onValueChange = { vlozText = it },
+                value = poznamkyText,
+                onValueChange = { poznamkyText = it },
                 modifier = androidx.compose.ui.Modifier
                     .padding(bottom = 32.dp)
                     .fillMaxWidth()
@@ -149,21 +157,23 @@ class NovyRecept {
     }
     @Composable
     fun VytvorSurovinu(
-        value: String,
-        onValueChange: (String) -> Unit,
+        surovinaValue: String,
+        onSurovinaChange: (String) -> Unit,
+        mnozstvoValue: String,
+        onMnozstvoChange: (String) -> Unit,
         modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier
     ){
         TextField(
-            value = value,
-            onValueChange = onValueChange,
+            value = surovinaValue,
+            onValueChange = onSurovinaChange,
             label = { Text(stringResource(R.string.nazov_s)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = androidx.compose.ui.Modifier.fillMaxWidth()
         )
         TextField(
-            value = value,
-            onValueChange = onValueChange,
+            value = mnozstvoValue,
+            onValueChange = onMnozstvoChange,
             label = { Text(stringResource(R.string.mnozstvo_s)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -219,7 +229,7 @@ class NovyRecept {
     @Composable
     fun NovyReceptPreview() {
         Vamz_sem_pracaTheme {
-            VytvorRecepty()
+            VytvorRecepty(rememberNavController())
         }
     }
 }

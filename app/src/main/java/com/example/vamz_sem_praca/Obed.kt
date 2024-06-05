@@ -17,8 +17,10 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,11 +37,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
 class Obed {
+    /*object ObedStranaDestination : NavCiel {
+         override val cesta = "obed"
+         override val nazovZdroja = R.string.obed
+    }*/
+
     @Composable
-    fun ObedStrana() {
+    fun ObedStrana(
+        navController: NavHostController
+       // navigateBack: () -> Unit,
+       // navigateToUpdate: (Int) -> Unit,
+       // modifier: Modifier = Modifier
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -50,14 +66,16 @@ class Obed {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            VrchnyPanel()
+            VrchnyPanel() //navigateBack
             Obrazok()
             StartButton()
+            PlusButton(navController)
         }
     }
 
+
     @Composable
-    fun VrchnyPanel() {
+    fun VrchnyPanel() { //navigateBack: () -> Unit
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -112,11 +130,27 @@ class Obed {
         }
     }
 
+    @Composable
+    fun PlusButton(navController: NavHostController) {
+        FloatingActionButton(
+            onClick = { navController.navigate("novyRecept")},
+            shape = MaterialTheme.shapes.medium,
+            //modifier = Modifier.padding(dimensionResource(id = androidx.core.R.dimen.notification_right_side_padding_top))
+            modifier = Modifier
+               .padding(top = 480.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = stringResource(R.string.vytvorit) //
+            )
+        }
+    }
+
     @Preview(showBackground = true)
     @Composable
     fun ObedPreview() {
         Vamz_sem_pracaTheme {
-            ObedStrana()
+            ObedStrana(rememberNavController()) //navigateBack = {}, navigateToUpdate = {}
         }
     }
 }

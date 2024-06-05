@@ -17,16 +17,24 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Button
@@ -35,28 +43,40 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
 class UvodnaStrana {
-   @Composable
-   fun UvodStrana() {
+    /*object UvodnaStranaDestination : NavCiel {
+        override val cesta = "uvodna_strana" //override
+        override val nazovZdroja = R.string.app_name
+    }*/
+
+    @Composable
+   fun UvodStrana(
+        navController: NavHostController
+        //navigateToObed: () -> Unit,
+        //navigateToObedUpdate: (Int) -> Unit,
+       // modifier: Modifier = Modifier
+   ) {
        Column(
            modifier = Modifier
-               .fillMaxSize()
+               .statusBarsPadding()
+               .padding(horizontal = 10.dp)
                .verticalScroll(rememberScrollState())
-               .padding(
-                   horizontal = 10.dp,
-                   vertical = 30.dp
-               ),
+               .safeDrawingPadding(),
            verticalArrangement = Arrangement.Top,
            horizontalAlignment = Alignment.CenterHorizontally
        ) {
            VrchnyPanel()
            Logo()
-           Spacer(modifier = Modifier.height(32.dp)) // Vertical spacing after logo
-           StartButton()
+           Spacer(modifier = Modifier.height(32.dp))
+           StartButton(navController)
+
        }
    }
+
     @Composable
     fun VrchnyPanel() {
         Row(
@@ -68,7 +88,7 @@ class UvodnaStrana {
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = { }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                Icon(Icons.Filled.Menu, contentDescription = "Menu")
             }
             androidx.compose.material3.Text(
                 text = stringResource(R.string.app_name),
@@ -91,9 +111,9 @@ class UvodnaStrana {
     }
 
     @Composable
-    fun StartButton() {
+    fun StartButton(navController: NavHostController) { //navigateToObed: () -> Unit
         Button(
-            onClick = {  },
+            onClick = { navController.navigate("hlavnaStrana") }, //navigateToObed()
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 32.dp)
@@ -102,12 +122,12 @@ class UvodnaStrana {
         }
     }
 
+
     @Preview(showBackground = true)
     @Composable
     fun UvodnaStranaPreview() {
         Vamz_sem_pracaTheme {
-            UvodStrana()
-
+           UvodStrana(rememberNavController()) //navigateToObed = {}, navigateToObedUpdate = {}
         }
     }
 }
