@@ -6,11 +6,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -37,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
+import com.example.vamz_sem_praca.utvary.ObrazokSButtonom
 
 class HlavnaStrana {
     @Composable
@@ -54,19 +60,23 @@ class HlavnaStrana {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             VrchnyPanel()
-            //Obrazok()
-            StartButton(navController)
-            //PlusButton()
+            Spacer(modifier = Modifier.height(10.dp))
+            ObrazokRanajky(navController)
+            Spacer(modifier = Modifier.height(10.dp))
+            ObrazokObed(navController)
+            Spacer(modifier = Modifier.height(10.dp))
+            ObrazokVecera(navController)
+            Spacer(modifier = Modifier.height(10.dp))
+            ObrazokDezert(navController)
         }
     }
-
 
     @Composable
     fun VrchnyPanel() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Yellow)
+                .background(Color.Green)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
@@ -81,64 +91,52 @@ class HlavnaStrana {
         }
     }
 
-    /*@Composable
-    fun Obrazok() {
-        val image = painterResource(R.drawable.paradaj_p)
-        Box {
-            Image(
-                painter = image,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                alpha = 1f,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-            Text(
-                text = stringResource(R.string.ranajky),
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-                lineHeight = 116.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(top = 60.dp)
-            )
-        }
-    }*/
-
     @Composable
-    fun StartButton(navController: NavHostController) {
-        Button(
-            onClick = { navController.navigate("obed")},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 5.dp)
-        ) {
-            Text(stringResource(R.string.obed))
-        }
+    fun ObrazokRanajky(navController: NavHostController) {
+        ObrazokSButtonom(
+            navController = navController,
+            imageRes = R.drawable.ranajky,
+            buttonText = stringResource(R.string.ranajky),
+            navigateTo = "ranajky"
+        )
     }
 
-   /* @Composable
-    fun PlusButton() {
-        FloatingActionButton(
-            onClick = { },
-            shape = MaterialTheme.shapes.medium,
-            //modifier = Modifier.padding(dimensionResource(id = androidx.core.R.dimen.notification_right_side_padding_top))
-            modifier = Modifier
-                .padding(top = 480.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = stringResource(R.string.zaciname) //
-            )
-        }
-    }*/
+    @Composable
+    fun ObrazokObed(navController: NavHostController) {
+        ObrazokSButtonom(
+            navController = navController,
+            imageRes = R.drawable.obed,
+            buttonText = stringResource(R.string.obed),
+            navigateTo = "obed"
+        )
+    }
+
+    @Composable
+    fun ObrazokVecera(navController: NavHostController) {
+        ObrazokSButtonom(
+            navController = navController,
+            imageRes = R.drawable.vecera,
+            buttonText = stringResource(R.string.vecera),
+            navigateTo = "vecera"
+        )
+    }
+
+    @Composable
+    fun ObrazokDezert(navController: NavHostController) {
+        ObrazokSButtonom(
+            navController = navController,
+            imageRes = R.drawable.dezert,
+            buttonText = stringResource(R.string.dezert),
+            navigateTo = "dezert"
+        )
+    }
 
     @Preview(showBackground = true)
     @Composable
     fun HlavnaStranaPreview() {
         Vamz_sem_pracaTheme {
-            HlStrana(rememberNavController()) //navigateBack = {}, navigateToUpdate = {}
+            HlStrana(rememberNavController())
         }
     }
-
 }
+

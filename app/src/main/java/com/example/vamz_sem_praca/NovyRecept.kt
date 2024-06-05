@@ -1,9 +1,7 @@
 package com.example.vamz_sem_praca
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,34 +13,27 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import androidx.compose.ui.Modifier //!
+import com.example.vamz_sem_praca.utvary.VrchnyPanel
+import com.example.vamz_sem_praca.utvary.VytvorTextField
 
 /*
 *
@@ -52,8 +43,8 @@ class NovyRecept {
     @Composable
     fun VytvorRecepty(navController: NavHostController) {
         var receptText by remember { mutableStateOf("") }
-        var surovinaText by remember { mutableStateOf("") }
-        var mnozstvoText by remember { mutableStateOf("") }
+        var surovinyList by remember { mutableStateOf(listOf("")) }
+        var mnozstvaList by remember { mutableStateOf(listOf("")) }
         var postupText by remember { mutableStateOf("") }
         var poznamkyText by remember { mutableStateOf("") }
 
@@ -66,7 +57,7 @@ class NovyRecept {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            VrchnyPanel()
+            VrchnyPanel(nazovStrany = stringResource(R.string.novy_recept))
             Spacer(modifier = Modifier.height(20.dp))
             VytvorRecept(
                 value = receptText,
@@ -81,15 +72,25 @@ class NovyRecept {
                     .padding(bottom = 16.dp, top = 40.dp)
                     .align(alignment = Alignment.Start)
             )
-            VytvorSurovinu(
-                surovinaValue  = surovinaText,
-                onSurovinaChange  = { surovinaText = it },
-                mnozstvoValue = mnozstvoText,
-                onMnozstvoChange = { mnozstvoText = it },
-                modifier = androidx.compose.ui.Modifier
-                    .padding(bottom = 32.dp)
-                    .fillMaxWidth()
-            )
+            surovinyList.forEachIndexed { index, surovina ->
+                VytvorSurovinu(
+                    surovinaValue = surovina,
+                    onSurovinaChange = { newSurovina ->
+                        surovinyList = surovinyList.toMutableList().apply { set(index, newSurovina) }
+                    },
+                    mnozstvoValue = mnozstvaList.getOrNull(index) ?: "",
+                    onMnozstvoChange = { newMnozstvo ->
+                        mnozstvaList = mnozstvaList.toMutableList().apply { set(index, newMnozstvo) }
+                    },
+                    modifier = Modifier
+                        .padding(bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            PlusButton {
+                surovinyList = surovinyList + ""
+                mnozstvaList = mnozstvaList + ""
+            }
             Text(
                 text = stringResource(R.string.postup),
                 modifier = androidx.compose.ui.Modifier
@@ -124,37 +125,16 @@ class NovyRecept {
     fun VytvorRecept(
         value: String,
         onValueChange: (String) -> Unit,
-        modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier
-    ){
-        TextField(
+        modifier: Modifier = Modifier
+    ) {
+        VytvorTextField(
             value = value,
             onValueChange = onValueChange,
-            label = { Text(stringResource(R.string.nazov_r)) },
-            singleLine = false,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            modifier = androidx.compose.ui.Modifier.fillMaxWidth()
+            labelResId = R.string.nazov_r,
+            modifier = modifier
         )
     }
 
-    @Composable
-    fun VrchnyPanel() {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Yellow)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(onClick = { }) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-            }
-            androidx.compose.material3.Text(
-                text = stringResource(R.string.novy_recept),
-                style = MaterialTheme.typography.headlineMedium
-            )
-        }
-    }
     @Composable
     fun VytvorSurovinu(
         surovinaValue: String,
@@ -185,15 +165,13 @@ class NovyRecept {
     fun VytvorPostup(
         value: String,
         onValueChange: (String) -> Unit,
-        modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier
+        modifier: Modifier = Modifier
     ) {
-        TextField(
+        VytvorTextField(
             value = value,
             onValueChange = onValueChange,
-            label = { Text(stringResource(R.string.napis_postup)) },
-            singleLine = false,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            modifier = androidx.compose.ui.Modifier.fillMaxWidth()
+            labelResId = R.string.napis_postup,
+            modifier = modifier
         )
     }
 
@@ -201,15 +179,13 @@ class NovyRecept {
     fun VytvorPoznamky(
         value: String,
         onValueChange: (String) -> Unit,
-        modifier: androidx.compose.ui.Modifier = androidx.compose.ui.Modifier
+        modifier: Modifier = Modifier
     ) {
-        TextField(
+        VytvorTextField(
             value = value,
             onValueChange = onValueChange,
-            label = { Text(stringResource(R.string.napis_poznamky)) },
-            singleLine = false,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            modifier = androidx.compose.ui.Modifier.fillMaxWidth()
+            labelResId = R.string.napis_poznamky,
+            modifier = modifier
         )
     }
 
@@ -222,6 +198,18 @@ class NovyRecept {
                 .padding(vertical = 60.dp)
         ) {
             androidx.compose.material3.Text(stringResource(R.string.vytvorit))
+        }
+    }
+
+    @Composable
+    fun PlusButton(onClick: () -> Unit) {
+        FloatingActionButton(
+            onClick = onClick,
+            modifier = Modifier
+                .padding(16.dp)
+                //.align(Alignment.CenterHorizontally)
+        ) {
+            Icon(Icons.Filled.Add, contentDescription = "Add")
         }
     }
 

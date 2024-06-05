@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="yellow">#FFAE42</color>
+    <color name="zelena_30">#30b21a</color>
+    <color name="svetlo_zelena">#76ff7a</color>
+    <color name="pastelovo_zelena">#d8e4bc</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
