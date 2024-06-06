@@ -26,6 +26,11 @@ import androidx.navigation.NavHostController
 import com.example.vamz_sem_praca.R
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Create
+import com.example.vamz_sem_praca.data.FavRecepty
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.ui.theme.Mangova
 
 @Composable
 fun NavigateButton(
@@ -44,38 +49,69 @@ fun NavigateButton(
 }
 
 @Composable
-fun PlusButton(
+fun VytvorButton(
     navController: NavHostController
 ) {
-    FloatingActionButton(
-        onClick = { navController.navigate("novyRecept")},
-        shape = MaterialTheme.shapes.medium,
-        modifier = Modifier
-            .padding(top = 480.dp)
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd
     ) {
-        Icon(
-            imageVector = Icons.Default.Add,
-            contentDescription = stringResource(R.string.vytvorit)
-        )
+        FloatingActionButton(
+            onClick = { navController.navigate("novyRecept") },
+            shape = MaterialTheme.shapes.medium,
+            containerColor = Mangova,
+            contentColor = Color.White,
+            modifier = Modifier
+                .padding(top = 400.dp)
+                .padding(16.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Create,
+                contentDescription = stringResource(R.string.vytvorit),
+                modifier = Modifier
+                    .size(30.dp)
+            )
+        }
     }
 }
 
 @Composable
-fun SrdceButton() {
-    var isFavorite by remember { mutableStateOf(false) }
+fun SrdceButton(viewModel: FavReceptyViewModel, recepty: FavRecepty) {
+    var isFavorite by remember { mutableStateOf(viewModel.isFavorite(recepty)) }
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopEnd
     ) {
         IconButton(
-            onClick = { isFavorite = !isFavorite }
+            onClick = {
+                isFavorite = !isFavorite
+                viewModel.PrepinacOblubene(recepty)
+            }
             ) {
             Icon(
                 imageVector = Icons.Filled.Favorite,
                 contentDescription = "Obľúbený",
-                tint = if (isFavorite) Color.Red else Color.Gray,
+                tint = if (isFavorite) Color.Red else Color.DarkGray,
                 modifier = Modifier.size(48.dp)
             )
         }
     }
 }
+
+ @Composable
+    fun ViacButton(onClick: () -> Unit) {
+        FloatingActionButton(
+            onClick = onClick,
+            containerColor = Mangova,
+            contentColor = Color.White,
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
+            Icon(
+                Icons.Filled.Add,
+                contentDescription = "Add",
+                modifier = Modifier
+                    .size(30.dp)
+            )
+        }
+    }

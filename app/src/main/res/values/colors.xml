@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow">#FFAE42</color>
+    <color name="yellow_orange">#FFAE42</color>
+    <color name="oranzova">#FFA500</color>
+    <color name="mangova">#FFC324</color>
+    <color name="tmava_oranzova">#CD5700</color>
+    <color name="svetla_oranzova">#ffc87c</color>
     <color name="zelena_30">#30b21a</color>
     <color name="svetlo_zelena">#76ff7a</color>
     <color name="pastelovo_zelena">#d8e4bc</color>

@@ -1,4 +1,4 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.vamz_sem_praca.R
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import java.text.NumberFormat
@@ -36,20 +37,21 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.UpravaCisla
 import com.example.vamz_sem_praca.utvary.ZaokruhliCislo
 import kotlinx.coroutines.launch
+import kotlin.math.ceil
 
 /*
 Podobný návrh z cvičenia 5
  */
-class PrevodHnaG {
+class PrevodGnaH {
     @Composable
-    fun PrevodJednotiekHrncek(
+    fun PrevodJednotiekGram(
         navController: NavHostController
     ) {
         var vlozenaHod by remember { mutableStateOf("") }
         var roundUp by remember { mutableStateOf(false) }
 
         val amount = vlozenaHod.toDoubleOrNull() ?: 0.0
-        val gram = VypocetHnaG(amount, roundUp)
+        val hrncek = VypocetGnaH(amount, roundUp)
 
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -85,7 +87,7 @@ class PrevodHnaG {
                             UpravaCisla(
                                 value = vlozenaHod,
                                 onValueChange = { vlozenaHod = it },
-                                labelText = stringResource(R.string.mnozstvo_v_hrncek),
+                                labelText = stringResource(R.string.mnozstvo_v_gram),
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .padding(horizontal = 20.dp)
@@ -99,7 +101,7 @@ class PrevodHnaG {
                                     .padding(horizontal = 20.dp)
                             )
                             Text(
-                                text = stringResource(R.string.vysledok_v_gram, gram),
+                                text = stringResource(R.string.vysledok_v_hrncek, hrncek),
                                 style = MaterialTheme.typography.displaySmall,
                                 modifier = Modifier
                                     .padding(bottom = 5.dp)
@@ -114,21 +116,21 @@ class PrevodHnaG {
     }
 
     /**
-     * Výpočet množstva z hrnčeka na gram na základe vloženej hodnoty používateľa
+     * Výpočet množstva z gramoch na hrnčeky na základe vloženej hodnoty používateľa
      */
-    private fun VypocetHnaG(amount: Double, roundUp: Boolean): String {
-        var gram = amount * 150
+    private fun VypocetGnaH(amount: Double, roundUp: Boolean): String {
+        var hrncek = amount / 150
         if (roundUp) {
-            gram = kotlin.math.ceil(gram)
+            hrncek = ceil(hrncek)
         }
-        return NumberFormat.getNumberInstance().format(gram)
+        return NumberFormat.getNumberInstance().format(hrncek)
     }
 
     @Preview(showBackground = true)
     @Composable
     fun PrevodJednotiekGramPreview() {
         Vamz_sem_pracaTheme {
-            PrevodJednotiekHrncek(rememberNavController())
+            PrevodJednotiekGram(rememberNavController())
         }
     }
 }

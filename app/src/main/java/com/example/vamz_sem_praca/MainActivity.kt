@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.navigacia.Navigacia
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
 class MainActivity : ComponentActivity() {
+    private val viewModel by lazy { FavReceptyViewModel() }
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -21,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigacia()
+                    Navigacia(viewModel = viewModel)
                 }
             }
         }

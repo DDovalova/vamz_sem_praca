@@ -1,4 +1,4 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,12 +12,8 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -37,10 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
-import androidx.compose.ui.Modifier //!
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import com.example.vamz_sem_praca.R
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorTextField
+import com.example.vamz_sem_praca.utvary.ViacButton
 import kotlinx.coroutines.launch
 
 /*
@@ -83,7 +82,7 @@ class NovyRecept {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.novy_recept),
-                            onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() }
                             }
                         )
                             Spacer(modifier = Modifier.height(0.dp))
@@ -96,9 +95,13 @@ class NovyRecept {
                         )
                             Text(
                                 text = stringResource(R.string.suroviny),
+                                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier
                                     .padding(bottom = 16.dp, top = 40.dp)
                                     .align(alignment = Alignment.Start)
+                                    .padding(bottom = 5.dp)
+                                    .padding(horizontal = 20.dp)
                         )
                             surovinyList.forEachIndexed { index, surovina ->
                             VytvorSurovinu(
@@ -121,9 +124,13 @@ class NovyRecept {
                             }
                             Text(
                                 text = stringResource(R.string.postup),
+                                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier
                                     .padding(bottom = 16.dp, top = 40.dp)
                                     .align(alignment = Alignment.Start)
+                                    .padding(bottom = 5.dp)
+                                    .padding(horizontal = 20.dp)
                                 )
                             VytvorPostup(
                                 value = postupText,
@@ -134,9 +141,13 @@ class NovyRecept {
                             )
                             Text(
                                 text = stringResource(R.string.poznamky),
+                                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier
                                     .padding(bottom = 16.dp, top = 40.dp)
                                     .align(alignment = Alignment.Start)
+                                    .padding(bottom = 5.dp)
+                                    .padding(horizontal = 20.dp)
                             )
                             VytvorPoznamky(
                                 value = poznamkyText,
@@ -144,6 +155,8 @@ class NovyRecept {
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
+                                    .padding(bottom = 5.dp)
+                                    .padding(horizontal = 20.dp)
                             )
                             VytvorButton()
                         }
@@ -164,6 +177,8 @@ class NovyRecept {
             onValueChange = onValueChange,
             labelResId = R.string.nazov_r,
             modifier = modifier
+                .padding(bottom = 5.dp)
+                .padding(horizontal = 20.dp)
         )
     }
 
@@ -181,7 +196,10 @@ class NovyRecept {
             label = { Text(stringResource(R.string.nazov_s)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 5.dp)
+                .padding(horizontal = 20.dp)
         )
         TextField(
             value = mnozstvoValue,
@@ -189,7 +207,10 @@ class NovyRecept {
             label = { Text(stringResource(R.string.mnozstvo_s)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 5.dp)
+                .padding(horizontal = 20.dp)
         )
     }
 
@@ -198,12 +219,16 @@ class NovyRecept {
         value: String,
         onValueChange: (String) -> Unit,
         modifier: Modifier = Modifier
+            .padding(bottom = 5.dp)
+            .padding(horizontal = 20.dp)
     ) {
         VytvorTextField(
             value = value,
             onValueChange = onValueChange,
             labelResId = R.string.napis_postup,
             modifier = modifier
+                .padding(bottom = 5.dp)
+                .padding(horizontal = 20.dp)
         )
     }
 
@@ -227,20 +252,9 @@ class NovyRecept {
             onClick = {  },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 60.dp)
+                .padding(vertical = 30.dp, horizontal = 20.dp)
         ) {
             Text(stringResource(R.string.vytvorit))
-        }
-    }
-
-    @Composable
-    fun ViacButton(onClick: () -> Unit) {
-        FloatingActionButton(
-            onClick = onClick,
-            modifier = Modifier
-                .padding(16.dp)
-        ) {
-            Icon(Icons.Filled.Add, contentDescription = "Add")
         }
     }
 

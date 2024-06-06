@@ -1,53 +1,44 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.vamz_sem_praca.data.FavRecepty
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.R
+import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.NavigateButton
-import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.ObrazokSTextom
-import com.example.vamz_sem_praca.utvary.PlusButton
-import kotlinx.coroutines.launch
+import com.example.vamz_sem_praca.utvary.VrchnyPanel
+import com.example.vamz_sem_praca.utvary.VytvorButton
+import com.example.vamz_sem_praca.utvary.SrdceButton
 
-class Obed {
+class Ranajky {
     @Composable
-    fun ObedStrana(
-        navController: NavHostController
+    fun RanajkyStrana(
+        navController: NavHostController,
+        viewModel: FavReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -74,17 +65,17 @@ class Obed {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.obed),
+                                nazovStrany = stringResource(R.string.ranajky),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            ObrazokParadajkovaPolievka()
+                            ObrazokLievance(viewModel)
                             NavigateButton(
                                 navController = navController,
                                 destination = "hlavnaStrana",
-                                buttonText = stringResource(R.string.paradajkova_polievka)
+                                buttonText = stringResource(R.string.lievance)
                             )
-                            PlusButton(navController)
+                            VytvorButton(navController)
                         }
                     }
                 )
@@ -92,19 +83,25 @@ class Obed {
         )
     }
 
-    @Composable
-    fun ObrazokParadajkovaPolievka() {
-        ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.paradaj_p),
-            text = stringResource(R.string.paradajkova_polievka)
-        )
+   @Composable
+    fun ObrazokLievance(viewModel: FavReceptyViewModel) {
+       val lievance = FavRecepty(
+           id = 1,
+           name = stringResource(R.string.lievance),
+           imageResId = R.drawable.lievance
+       )
+       ObrazokSTextom(
+           imagePainter = painterResource(R.drawable.lievance),
+           text = stringResource(R.string.lievance),
+           favoriteButton = { SrdceButton(viewModel, lievance) }
+       )
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun ObedPreview() {
+    fun RanajkyPreview() {
         Vamz_sem_pracaTheme {
-            ObedStrana(rememberNavController())
+            RanajkyStrana(rememberNavController(), FavReceptyViewModel())
         }
     }
 }

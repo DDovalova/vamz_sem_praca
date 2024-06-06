@@ -1,4 +1,4 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,18 +22,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.R
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.NavigateButton
 import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
-import com.example.vamz_sem_praca.utvary.PlusButton
+import com.example.vamz_sem_praca.utvary.SrdceButton
 
-class Dezert {
+class OblubeneRecepty {
     @Composable
-    fun DezertStrana(
-        navController: NavHostController
+    fun OblubeneReceptyStrana(
+        navController: NavHostController,
+        viewModel: FavReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -60,17 +63,22 @@ class Dezert {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.dezert),
+                                nazovStrany = stringResource(R.string.oblubene),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            ObrazokParadajkovaPolievka()
-                            NavigateButton(
-                                navController = navController,
-                                destination = "hlavnaStrana",
-                                buttonText = stringResource(R.string.paradajkova_polievka)
-                            )
-                            PlusButton(navController)
+                            viewModel.favoriteRecipes.forEach { recipe ->
+                                ObrazokSTextom(
+                                    imagePainter = painterResource(recipe.imageResId),
+                                    text = recipe.name,
+                                    favoriteButton = { SrdceButton(viewModel, recipe) }
+                                )
+                                NavigateButton(
+                                    navController = navController,
+                                    destination = "recipeDetail/${recipe.id}",
+                                    buttonText = recipe.name
+                                )
+                            }
                         }
                     }
                 )
@@ -78,19 +86,11 @@ class Dezert {
         )
     }
 
-    @Composable
-    fun ObrazokParadajkovaPolievka() {
-        ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.paradaj_p),
-            text = stringResource(R.string.paradajkova_polievka)
-        )
-    }
-
     @Preview(showBackground = true)
     @Composable
-    fun DezertPreview() {
+    fun OblubeneReceptyPreview() {
         Vamz_sem_pracaTheme {
-            DezertStrana(rememberNavController())
+            OblubeneReceptyStrana(rememberNavController(), FavReceptyViewModel())
         }
     }
 }

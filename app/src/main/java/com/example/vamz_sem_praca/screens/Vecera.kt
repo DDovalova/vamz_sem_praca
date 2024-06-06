@@ -1,4 +1,4 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,18 +22,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.vamz_sem_praca.data.FavRecepty
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.R
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.NavigateButton
 import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
-import com.example.vamz_sem_praca.utvary.PlusButton
+import com.example.vamz_sem_praca.utvary.VytvorButton
+import com.example.vamz_sem_praca.utvary.SrdceButton
 
-class Ranajky {
+class Vecera {
     @Composable
-    fun RanajkyStrana(
-        navController: NavHostController
+    fun VeceraStrana(
+        navController: NavHostController,
+        viewModel: FavReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -60,17 +65,17 @@ class Ranajky {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.ranajky),
+                                nazovStrany = stringResource(R.string.vecera),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            ObrazokParadajkovaPolievka()
+                            ObrazokCestoviny(viewModel)
                             NavigateButton(
                                 navController = navController,
                                 destination = "hlavnaStrana",
-                                buttonText = stringResource(R.string.paradajkova_polievka)
+                                buttonText = stringResource(R.string.cestoviny)
                             )
-                            PlusButton(navController)
+                            VytvorButton(navController)
                         }
                     }
                 )
@@ -78,19 +83,25 @@ class Ranajky {
         )
     }
 
-   @Composable
-    fun ObrazokParadajkovaPolievka() {
+    @Composable
+    fun ObrazokCestoviny(viewModel: FavReceptyViewModel) {
+        val cestoviny = FavRecepty(
+            id = 1,
+            name = stringResource(R.string.cestoviny),
+            imageResId = R.drawable.cestoviny
+        )
         ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.paradaj_p),
-            text = stringResource(R.string.paradajkova_polievka)
+            imagePainter = painterResource(R.drawable.cestoviny),
+            text = stringResource(R.string.cestoviny),
+            favoriteButton = { SrdceButton(viewModel, cestoviny) }
         )
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun RanajkyPreview() {
+    fun VeceraPreview() {
         Vamz_sem_pracaTheme {
-            RanajkyStrana(rememberNavController())
+            VeceraStrana(rememberNavController(), FavReceptyViewModel())
         }
     }
 }

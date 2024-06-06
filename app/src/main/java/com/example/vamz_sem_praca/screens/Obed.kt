@@ -1,4 +1,4 @@
-package com.example.vamz_sem_praca
+package com.example.vamz_sem_praca.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,18 +22,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.launch
+import com.example.vamz_sem_praca.data.FavRecepty
+import com.example.vamz_sem_praca.data.FavReceptyViewModel
+import com.example.vamz_sem_praca.R
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.NavigateButton
-import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
-import com.example.vamz_sem_praca.utvary.PlusButton
+import com.example.vamz_sem_praca.utvary.ObrazokSTextom
+import com.example.vamz_sem_praca.utvary.VytvorButton
+import com.example.vamz_sem_praca.utvary.SrdceButton
+import kotlinx.coroutines.launch
 
-class Vecera {
+class Obed {
     @Composable
-    fun VeceraStrana(
-        navController: NavHostController
+    fun ObedStrana(
+        navController: NavHostController,
+        viewModel: FavReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -60,17 +65,17 @@ class Vecera {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.vecera),
+                                nazovStrany = stringResource(R.string.obed),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            ObrazokParadajkovaPolievka()
+                            ObrazokParadajkovaPolievka(viewModel)
                             NavigateButton(
                                 navController = navController,
                                 destination = "hlavnaStrana",
                                 buttonText = stringResource(R.string.paradajkova_polievka)
                             )
-                            PlusButton(navController)
+                            VytvorButton(navController)
                         }
                     }
                 )
@@ -79,18 +84,25 @@ class Vecera {
     }
 
     @Composable
-    fun ObrazokParadajkovaPolievka() {
+    fun ObrazokParadajkovaPolievka(viewModel: FavReceptyViewModel) {
+        val polievka = FavRecepty(
+            id = 1,
+            name = stringResource(R.string.paradajkova_polievka),
+            imageResId = R.drawable.paradaj_p
+        )
         ObrazokSTextom(
             imagePainter = painterResource(R.drawable.paradaj_p),
-            text = stringResource(R.string.paradajkova_polievka)
+            text = stringResource(R.string.paradajkova_polievka),
+            favoriteButton = { SrdceButton(viewModel, polievka) }
         )
     }
 
+
     @Preview(showBackground = true)
     @Composable
-    fun VeceraPreview() {
+    fun ObedPreview() {
         Vamz_sem_pracaTheme {
-            VeceraStrana(rememberNavController())
+            ObedStrana(rememberNavController(), FavReceptyViewModel())
         }
     }
 }

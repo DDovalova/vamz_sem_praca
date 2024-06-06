@@ -27,6 +27,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontWeight
 import kotlinx.coroutines.launch
+import com.example.vamz_sem_praca.ui.theme.Mangova
 
 
 @Composable
@@ -37,7 +38,7 @@ fun VrchnyPanel(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Green)
+            .background(Mangova)
             .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -47,6 +48,8 @@ fun VrchnyPanel(
         }
         Text(
             text = nazovStrany,
+            fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.headlineMedium
         )
     }
@@ -61,7 +64,7 @@ fun MenuPanel(navController: NavHostController, drawerState: DrawerState) {
             Column (
                 modifier = Modifier
                     .fillMaxHeight()
-                    .background(Color.Green)
+                    .background(Mangova)
                     .padding(horizontal = 16.dp, vertical = 30.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
@@ -69,6 +72,12 @@ fun MenuPanel(navController: NavHostController, drawerState: DrawerState) {
                 TextMenu(
                     text = stringResource(R.string.hl_strana),
                     navDestination = "hlavnaStrana",
+                    navController = navController,
+                    drawerState = drawerState
+                )
+                TextMenu(
+                    text = stringResource(R.string.oblubene),
+                    navDestination = "oblubene",
                     navController = navController,
                     drawerState = drawerState
                 )
@@ -124,6 +133,7 @@ fun TextMenu(
     val scope = rememberCoroutineScope()
     Text(
         text = text,
+        fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
         fontWeight = FontWeight.Bold,
         modifier = Modifier
             .padding(16.dp)
