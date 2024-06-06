@@ -14,11 +14,6 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
-import com.example.vamz_sem_praca.utvary.VrchnyPanel
+import com.example.vamz_sem_praca.utvary.NavigateButton
 
 class UvodnaStrana {
     @Composable
@@ -52,7 +47,11 @@ class UvodnaStrana {
            VrchnyPanel(nazovStrany = stringResource(R.string.app_name))
            Logo()
            Spacer(modifier = Modifier.height(32.dp))
-           StartButton(navController)
+           NavigateButton(
+               navController = navController,
+               destination = "hlavnaStrana",
+               buttonText = stringResource(R.string.zaciname)
+           )
        }
    }
 
@@ -62,7 +61,7 @@ class UvodnaStrana {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Green)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .padding(horizontal = 16.dp, vertical = 13.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -84,18 +83,6 @@ class UvodnaStrana {
                 .aspectRatio(1f)
                 .padding(vertical = 24.dp)
         )
-    }
-
-    @Composable
-    fun StartButton(navController: NavHostController) {
-        Button(
-            onClick = { navController.navigate("hlavnaStrana") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 0.dp, horizontal = 30.dp)
-        ) {
-            androidx.compose.material3.Text(stringResource(R.string.zaciname))
-        }
     }
 
     @Preview(showBackground = true)

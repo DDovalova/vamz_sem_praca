@@ -51,10 +51,10 @@ fun Navigacia() {
         composable("hlavnaStrana") { HlavnaStrana().HlStrana(navController) }
         composable("ranajky") { Ranajky().RanajkyStrana(navController) }
         composable("obed") { Obed().ObedStrana(navController) }
-        //composable("vecera") { Vecera().VeceraStrana(navController) }
-        //composable("dezert") { Dezert().DezertStrana(navController) }
-        composable("prevodGnaH") { PrevodGnaH().PrevodJednotiekGram() }
-        composable("prevodHnaG") { PrevodHnaG().PrevodJednotiekHrncek() }
+        composable("vecera") { Vecera().VeceraStrana(navController) }
+        composable("dezert") { Dezert().DezertStrana(navController) }
+        composable("prevodGnaH") { PrevodGnaH().PrevodJednotiekGram(navController) }
+        composable("prevodHnaG") { PrevodHnaG().PrevodJednotiekHrncek(navController) }
         composable("novyRecept") { NovyRecept().VytvorRecepty(navController) }
     }
 }

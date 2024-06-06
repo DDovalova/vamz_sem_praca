@@ -1,5 +1,4 @@
 <resources>
-    // Pre strany Prevody jednotiek
     <string name="app_name">Moje Recepty</string>
     <string name="prevod_jednotiek">Prevod jednotiek</string>
     <string name="mnozstvo_v_gram">Množstvo v gramoch</string>
@@ -7,7 +6,6 @@
     <string name="vysledok_v_gram">Výsledok v gramoch: %s</string>
     <string name="vysledok_v_hrncek">Výsledok v hrnčekoch: %s</string>
     <string name="zaokruhlenie">Zaokruhlenie</string>
-    //Pre stranu Novy Recept
     <string name="novy_recept">NOVÝ RECEPT</string>
     <string name="nazov_r">Názov receptu</string>
     <string name="suroviny">SUROVINY</string>
@@ -18,24 +16,18 @@
     <string name="poznamky">POZNÁMNKY</string>
     <string name="napis_poznamky">Napíš poznámky</string>
     <string name="vytvorit">Vytvoriť</string>
-    //Pre stranu Kategorie
-    <string name="ranajky">RANAJKY</string>
+    <string name="ranajky">RAŇAJKY</string>
     <string name="obed">OBED</string>
     <string name="vecera">VEČERA</string>
     <string name="dezert">DEZERT</string>
     <string name="paradajkova_polievka">Paradajková polievka</string>
     <string name="milkshake">Milkshake</string>
     <string name="lievance">Lievance</string>
-    //Pre hlavnu stranu
     <string name="hl_strana">HLAVNÁ STRANA</string>
     <string name="tlacislo_spat">Späť</string>
-
     <string name="GnaH">GRAM NA HRNČEK</string>
     <string name="HnaG">HRNČEK NA GRAM</string>
-
     <string name="pridaj">Pridaj</string>
     <string name="zaciname">Začíname!</string>
-
-
 
 </resources>

@@ -2,9 +2,7 @@ package com.example.vamz_sem_praca
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -18,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,12 +25,14 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
-import com.example.vamz_sem_praca.utvary.ObrazokSButtonom
+import com.example.vamz_sem_praca.utvary.NavigateButton
+import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
+import com.example.vamz_sem_praca.utvary.PlusButton
 
-class HlavnaStrana {
+class Vecera {
     @Composable
-    fun HlStrana(
+    fun VeceraStrana(
         navController: NavHostController
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -59,18 +60,17 @@ class HlavnaStrana {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.app_name),
+                                nazovStrany = stringResource(R.string.vecera),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            Spacer(modifier = Modifier.height(10.dp))
-                            ObrazokRanajky(navController)
-                            Spacer(modifier = Modifier.height(10.dp))
-                            ObrazokObed(navController)
-                            Spacer(modifier = Modifier.height(10.dp))
-                            ObrazokVecera(navController)
-                            Spacer(modifier = Modifier.height(10.dp))
-                            ObrazokDezert(navController)
+                            ObrazokParadajkovaPolievka()
+                            NavigateButton(
+                                navController = navController,
+                                destination = "hlavnaStrana",
+                                buttonText = stringResource(R.string.paradajkova_polievka)
+                            )
+                            PlusButton(navController)
                         }
                     }
                 )
@@ -79,51 +79,18 @@ class HlavnaStrana {
     }
 
     @Composable
-    fun ObrazokRanajky(navController: NavHostController) {
-        ObrazokSButtonom(
-            navController = navController,
-            imageRes = R.drawable.ranajky,
-            buttonText = stringResource(R.string.ranajky),
-            navigateTo = "ranajky"
-        )
-    }
-
-    @Composable
-    fun ObrazokObed(navController: NavHostController) {
-        ObrazokSButtonom(
-            navController = navController,
-            imageRes = R.drawable.obed,
-            buttonText = stringResource(R.string.obed),
-            navigateTo = "obed"
-        )
-    }
-
-    @Composable
-    fun ObrazokVecera(navController: NavHostController) {
-        ObrazokSButtonom(
-            navController = navController,
-            imageRes = R.drawable.vecera,
-            buttonText = stringResource(R.string.vecera),
-            navigateTo = "vecera"
-        )
-    }
-
-    @Composable
-    fun ObrazokDezert(navController: NavHostController) {
-        ObrazokSButtonom(
-            navController = navController,
-            imageRes = R.drawable.dezert,
-            buttonText = stringResource(R.string.dezert),
-            navigateTo = "dezert"
+    fun ObrazokParadajkovaPolievka() {
+        ObrazokSTextom(
+            imagePainter = painterResource(R.drawable.paradaj_p),
+            text = stringResource(R.string.paradajkova_polievka)
         )
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun HlavnaStranaPreview() {
+    fun VeceraPreview() {
         Vamz_sem_pracaTheme {
-            HlStrana(rememberNavController(), )
+            VeceraStrana(rememberNavController())
         }
     }
 }
-

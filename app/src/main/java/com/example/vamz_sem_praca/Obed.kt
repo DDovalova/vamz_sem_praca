@@ -38,8 +38,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
+import com.example.vamz_sem_praca.utvary.NavigateButton
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.ObrazokSTextom
+import com.example.vamz_sem_praca.utvary.PlusButton
 import kotlinx.coroutines.launch
 
 class Obed {
@@ -77,7 +79,11 @@ class Obed {
                                 }
                             )
                             ObrazokParadajkovaPolievka()
-                            StartButton()
+                            NavigateButton(
+                                navController = navController,
+                                destination = "hlavnaStrana",
+                                buttonText = stringResource(R.string.paradajkova_polievka)
+                            )
                             PlusButton(navController)
                         }
                     }
@@ -92,41 +98,6 @@ class Obed {
             imagePainter = painterResource(R.drawable.paradaj_p),
             text = stringResource(R.string.paradajkova_polievka)
         )
-    }
-
-    /*@Composable
-    fun ObrazokLievance() {
-        ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.lievance),
-            text = stringResource(R.string.lievance)
-        )
-    }*/
-
-    @Composable
-    fun StartButton() {
-        Button(
-            onClick = { },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 5.dp)
-        ) {
-            Text(stringResource(R.string.paradajkova_polievka))
-        }
-    }
-
-    @Composable
-    fun PlusButton(navController: NavHostController) {
-        FloatingActionButton(
-            onClick = { navController.navigate("novyRecept")},
-            shape = MaterialTheme.shapes.medium,
-            modifier = Modifier
-               .padding(top = 480.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = stringResource(R.string.vytvorit)
-            )
-        }
     }
 
     @Preview(showBackground = true)
