@@ -1,8 +1,6 @@
 package com.example.vamz_sem_praca
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,25 +24,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
-import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.ObrazokSTextom
+import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import kotlinx.coroutines.launch
 
-class Obed {
+class Ranajky {
     @Composable
-    fun ObedStrana(
+    fun RanajkyStrana(
         navController: NavHostController
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -72,11 +66,11 @@ class Obed {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.obed),
+                                nazovStrany = stringResource(R.string.ranajky),
                                 onMenuClick = { scope.launch { drawerState.open() }
                                 }
                             )
-                            ObrazokParadajkovaPolievka()
+                            //ObrazokParadajkovaPolievka()
                             StartButton()
                             PlusButton(navController)
                         }
@@ -86,19 +80,11 @@ class Obed {
         )
     }
 
-    @Composable
+   /* @Composable
     fun ObrazokParadajkovaPolievka() {
         ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.paradaj_p),
-            text = stringResource(R.string.paradajkova_polievka)
-        )
-    }
-
-    /*@Composable
-    fun ObrazokLievance() {
-        ObrazokSTextom(
-            imagePainter = painterResource(R.drawable.lievance),
-            text = stringResource(R.string.lievance)
+            imagePainter = painterResource(R.drawable.oatmeal),
+            text = stringResource(R.string.oatmeal)
         )
     }*/
 
@@ -110,7 +96,7 @@ class Obed {
                 .fillMaxWidth()
                 .padding(vertical = 5.dp)
         ) {
-            Text(stringResource(R.string.paradajkova_polievka))
+            //Text(stringResource(R.string.oatmeal))
         }
     }
 
@@ -120,7 +106,7 @@ class Obed {
             onClick = { navController.navigate("novyRecept")},
             shape = MaterialTheme.shapes.medium,
             modifier = Modifier
-               .padding(top = 480.dp)
+                .padding(top = 480.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
@@ -131,9 +117,9 @@ class Obed {
 
     @Preview(showBackground = true)
     @Composable
-    fun ObedPreview() {
+    fun RanajkyPreview() {
         Vamz_sem_pracaTheme {
-            ObedStrana(rememberNavController())
+            RanajkyStrana(rememberNavController())
         }
     }
 }

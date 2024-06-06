@@ -1,8 +1,10 @@
 package com.example.vamz_sem_praca
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,10 +14,17 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +43,7 @@ class UvodnaStrana {
        Column(
            modifier = Modifier
                .statusBarsPadding()
-               .padding(horizontal = 10.dp)
+               .padding(horizontal = 0.dp)
                .verticalScroll(rememberScrollState())
                .safeDrawingPadding(),
            verticalArrangement = Arrangement.Top,
@@ -46,6 +55,23 @@ class UvodnaStrana {
            StartButton(navController)
        }
    }
+
+    @Composable
+    fun VrchnyPanel(nazovStrany: String) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Green)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = nazovStrany,
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+    }
 
     @Composable
     fun Logo() {
@@ -66,7 +92,7 @@ class UvodnaStrana {
             onClick = { navController.navigate("hlavnaStrana") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 32.dp)
+                .padding(vertical = 0.dp, horizontal = 30.dp)
         ) {
             androidx.compose.material3.Text(stringResource(R.string.zaciname))
         }

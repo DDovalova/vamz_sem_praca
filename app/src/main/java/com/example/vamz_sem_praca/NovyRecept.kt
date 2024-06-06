@@ -57,7 +57,7 @@ class NovyRecept {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            VrchnyPanel(nazovStrany = stringResource(R.string.novy_recept))
+            //VrchnyPanel(nazovStrany = stringResource(R.string.novy_recept))
             Spacer(modifier = Modifier.height(20.dp))
             VytvorRecept(
                 value = receptText,

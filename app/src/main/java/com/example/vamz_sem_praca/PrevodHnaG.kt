@@ -49,7 +49,7 @@ class PrevodHnaG {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            VrchnyPanel(nazovStrany = stringResource(R.string.prevod_jednotiek))
+            //VrchnyPanel(nazovStrany = stringResource(R.string.prevod_jednotiek))
             Spacer(modifier = Modifier.height(100.dp))
             UpravaCisla(
                 value = vlozenaHod,

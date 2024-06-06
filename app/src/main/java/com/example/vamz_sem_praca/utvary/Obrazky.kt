@@ -11,12 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.vamz_sem_praca.R
 
 @Composable
 fun ObrazokSButtonom(
@@ -49,5 +51,34 @@ fun ObrazokSButtonom(
         ) {
             Text(buttonText)
         }
+    }
+}
+
+@Composable
+fun ObrazokSTextom(
+    imagePainter: Painter,
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        Image(
+            painter = imagePainter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 1f,
+            modifier = Modifier
+                .fillMaxWidth()
+        )
+        Text(
+            text = text,
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
+            lineHeight = 116.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 60.dp)
+                .fillMaxWidth()
+        )
+        SrdceButton()
     }
 }

@@ -27,9 +27,11 @@
     <string name="milkshake">Milkshake</string>
     <string name="lievance">Lievance</string>
     //Pre hlavnu stranu
-    <string name="hl_strana">Hlavná strana</string>
+    <string name="hl_strana">HLAVNÁ STRANA</string>
     <string name="tlacislo_spat">Späť</string>
 
+    <string name="GnaH">GRAM NA HRNČEK</string>
+    <string name="HnaG">HRNČEK NA GRAM</string>
 
     <string name="pridaj">Pridaj</string>
     <string name="zaciname">Začíname!</string>
