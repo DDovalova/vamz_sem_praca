@@ -31,5 +31,14 @@
     <string name="zaciname">Začíname!</string>
     <string name="cestoviny">Cestoviny</string>
     <string name="oblubene">OBĽÚBENÉ RECEPTY</string>
-
+    <string name="vyhladaj_recept">Vyhľadaj recept</string>
+    <string name="hladaj">Hľadaj</string>
+    <string name="menu">Menu</string>
+    <string name="home">Domov</string>
+    <string name="sipka">Sipka</string>
+    <string name="star">Star</string>
+    <string name="bodky">Tri bodky</string>
+    <string name="ulozit">Uložiť</string>
+    <string name="recept_ulozeny">Recept bol uložený!</string>
+    <string name="ok">OK</string>
 </resources>

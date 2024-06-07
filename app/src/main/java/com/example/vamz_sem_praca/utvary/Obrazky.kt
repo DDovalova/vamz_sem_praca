@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.vamz_sem_praca.utvary.SrdceButton
 
 @Composable
 fun ObrazokSButtonom(
@@ -72,7 +71,7 @@ fun ObrazokSTextom(
             alpha = 1f,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(20 / 9f) //16/9f
+                .aspectRatio(20 / 9f)
         )
         Text(
             text = text,
@@ -83,12 +82,11 @@ fun ObrazokSTextom(
             lineHeight = 50.sp,
             textAlign = TextAlign.Start,
             modifier = Modifier
-                //.padding(top = 60.dp)
-                //.fillMaxWidth()
                 .align(Alignment.BottomStart)
                 .padding(10.dp)
         )
         //SrdceButton()
         favoriteButton()
+        MoreVertButton(modifier = Modifier.align(Alignment.BottomEnd))
     }
 }

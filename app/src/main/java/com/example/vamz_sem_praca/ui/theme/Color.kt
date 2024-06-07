@@ -12,6 +12,7 @@ val Oranzova = Color(0xFFFFA500)
 val TmavaOranzova = Color(0xFFCD5700)
 val Mangova = Color(0xFFFFC324)
 val SvetlaOranzova = Color(0xFFFC87C)
+val Hneda = Color(0xFF9D2B22)
 
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)

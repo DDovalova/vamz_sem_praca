@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
@@ -36,7 +37,8 @@ class OblubeneRecepty {
     @Composable
     fun OblubeneReceptyStrana(
         navController: NavHostController,
-        viewModel: FavReceptyViewModel
+        viewModel: FavReceptyViewModel,
+        searchViewModel: HladajReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -64,19 +66,24 @@ class OblubeneRecepty {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.oblubene),
-                                onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() } }
+                            ) { searchQuery ->
+                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
+                                if (foundRecipe != null) {
+                                    navController.navigate("recept/${foundRecipe.id}")
                                 }
-                            )
-                            viewModel.favoriteRecipes.forEach { recipe ->
+                            }
+                            viewModel.oblubeneRecepty.forEach { recipe ->
                                 ObrazokSTextom(
-                                    imagePainter = painterResource(recipe.imageResId),
-                                    text = recipe.name,
+                                    imagePainter = painterResource(recipe.obrazokR),
+                                    text = recipe.nazovR,
                                     favoriteButton = { SrdceButton(viewModel, recipe) }
                                 )
                                 NavigateButton(
                                     navController = navController,
-                                    destination = "recipeDetail/${recipe.id}",
-                                    buttonText = recipe.name
+                                    //destination = "recipeDetail/${recipe.id}",
+                                    destination = "hlavnaStrana",
+                                    buttonText = recipe.nazovR
                                 )
                             }
                         }
@@ -90,7 +97,11 @@ class OblubeneRecepty {
     @Composable
     fun OblubeneReceptyPreview() {
         Vamz_sem_pracaTheme {
-            OblubeneReceptyStrana(rememberNavController(), FavReceptyViewModel())
+            OblubeneReceptyStrana(
+                rememberNavController(),
+                FavReceptyViewModel(),
+                HladajReceptyViewModel()
+            )
         }
     }
 }

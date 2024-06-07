@@ -33,12 +33,14 @@ import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorButton
 import com.example.vamz_sem_praca.utvary.SrdceButton
+import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 
 class Dezert {
     @Composable
     fun DezertStrana(
         navController: NavHostController,
-        viewModel: FavReceptyViewModel
+        viewModel: FavReceptyViewModel,
+        searchViewModel: HladajReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -66,9 +68,13 @@ class Dezert {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.dezert),
-                                onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() } }
+                            ) { searchQuery ->
+                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
+                                if (foundRecipe != null) {
+                                    navController.navigate("recept/${foundRecipe.id}")
                                 }
-                            )
+                            }
                             ObrazokMilkshake(viewModel)
                             NavigateButton(
                                 navController = navController,
@@ -87,8 +93,8 @@ class Dezert {
     fun ObrazokMilkshake(viewModel: FavReceptyViewModel) {
         val milkshake = FavRecepty(
             id = 1,
-            name = stringResource(R.string.milkshake),
-            imageResId = R.drawable.milkshake
+            nazovR = stringResource(R.string.milkshake),
+            obrazokR = R.drawable.milkshake
         )
         ObrazokSTextom(
             imagePainter = painterResource(R.drawable.milkshake),
@@ -101,7 +107,11 @@ class Dezert {
     @Composable
     fun DezertPreview() {
         Vamz_sem_pracaTheme {
-            DezertStrana(rememberNavController(), FavReceptyViewModel())
+            DezertStrana(
+                rememberNavController(),
+                FavReceptyViewModel(),
+                HladajReceptyViewModel()
+            )
         }
     }
 }

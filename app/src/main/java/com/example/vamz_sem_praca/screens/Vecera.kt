@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.data.FavRecepty
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
@@ -38,10 +39,12 @@ class Vecera {
     @Composable
     fun VeceraStrana(
         navController: NavHostController,
-        viewModel: FavReceptyViewModel
+        viewModel: FavReceptyViewModel,
+        searchViewModel: HladajReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
+        val onSaveClicked: () -> Unit = {}
 
         ModalNavigationDrawer(
             drawerState = drawerState,
@@ -66,10 +69,14 @@ class Vecera {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.vecera),
-                                onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() } }
+                            ) { searchQuery ->
+                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
+                                if (foundRecipe != null) {
+                                    navController.navigate("recept/${foundRecipe.id}")
                                 }
-                            )
-                            ObrazokCestoviny(viewModel)
+                            }
+                            ObrazokCestoviny(viewModel, onSaveClicked)
                             NavigateButton(
                                 navController = navController,
                                 destination = "hlavnaStrana",
@@ -84,16 +91,18 @@ class Vecera {
     }
 
     @Composable
-    fun ObrazokCestoviny(viewModel: FavReceptyViewModel) {
+    fun ObrazokCestoviny(
+        viewModel: FavReceptyViewModel,
+        onSaveClicked: () -> Unit) {
         val cestoviny = FavRecepty(
             id = 1,
-            name = stringResource(R.string.cestoviny),
-            imageResId = R.drawable.cestoviny
+            nazovR = stringResource(R.string.cestoviny),
+            obrazokR = R.drawable.cestoviny
         )
         ObrazokSTextom(
             imagePainter = painterResource(R.drawable.cestoviny),
             text = stringResource(R.string.cestoviny),
-            favoriteButton = { SrdceButton(viewModel, cestoviny) }
+            favoriteButton = { SrdceButton(viewModel, cestoviny) },
         )
     }
 
@@ -101,7 +110,11 @@ class Vecera {
     @Composable
     fun VeceraPreview() {
         Vamz_sem_pracaTheme {
-            VeceraStrana(rememberNavController(), FavReceptyViewModel())
+            VeceraStrana(
+                rememberNavController(),
+                FavReceptyViewModel(),
+                HladajReceptyViewModel()
+            )
         }
     }
 }

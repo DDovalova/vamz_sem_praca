@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.data.FavRecepty
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
@@ -38,10 +39,12 @@ class Ranajky {
     @Composable
     fun RanajkyStrana(
         navController: NavHostController,
-        viewModel: FavReceptyViewModel
+        viewModel: FavReceptyViewModel,
+        searchViewModel: HladajReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
+        val onSaveClicked: () -> Unit = {}
 
         ModalNavigationDrawer(
             drawerState = drawerState,
@@ -66,10 +69,14 @@ class Ranajky {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.ranajky),
-                                onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() } }
+                            ) { searchQuery ->
+                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
+                                if (foundRecipe != null) {
+                                    navController.navigate("recept/${foundRecipe.id}")
                                 }
-                            )
-                            ObrazokLievance(viewModel)
+                            }
+                            ObrazokLievance(viewModel, onSaveClicked)
                             NavigateButton(
                                 navController = navController,
                                 destination = "hlavnaStrana",
@@ -84,16 +91,19 @@ class Ranajky {
     }
 
    @Composable
-    fun ObrazokLievance(viewModel: FavReceptyViewModel) {
+    fun ObrazokLievance(
+       viewModel: FavReceptyViewModel,
+       onSaveClicked: () -> Unit
+    ) {
        val lievance = FavRecepty(
            id = 1,
-           name = stringResource(R.string.lievance),
-           imageResId = R.drawable.lievance
+           nazovR = stringResource(R.string.lievance),
+           obrazokR = R.drawable.lievance
        )
        ObrazokSTextom(
            imagePainter = painterResource(R.drawable.lievance),
            text = stringResource(R.string.lievance),
-           favoriteButton = { SrdceButton(viewModel, lievance) }
+           favoriteButton = { SrdceButton(viewModel, lievance) },
        )
     }
 
@@ -101,7 +111,11 @@ class Ranajky {
     @Composable
     fun RanajkyPreview() {
         Vamz_sem_pracaTheme {
-            RanajkyStrana(rememberNavController(), FavReceptyViewModel())
+            RanajkyStrana(
+                rememberNavController(),
+                FavReceptyViewModel(),
+                HladajReceptyViewModel()
+            )
         }
     }
 }

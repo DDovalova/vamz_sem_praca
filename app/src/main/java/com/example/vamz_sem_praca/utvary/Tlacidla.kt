@@ -1,5 +1,6 @@
 package com.example.vamz_sem_praca.utvary
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,11 +27,14 @@ import androidx.navigation.NavHostController
 import com.example.vamz_sem_praca.R
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import com.example.vamz_sem_praca.data.FavRecepty
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.ui.theme.Mangova
+import androidx.compose.material3.TextButton
 
 @Composable
 fun NavigateButton(
@@ -76,8 +80,13 @@ fun VytvorButton(
 }
 
 @Composable
-fun SrdceButton(viewModel: FavReceptyViewModel, recepty: FavRecepty) {
+fun SrdceButton(
+    viewModel: FavReceptyViewModel,
+    recepty: FavRecepty,
+    //navController: NavHostController
+) {
     var isFavorite by remember { mutableStateOf(viewModel.isFavorite(recepty)) }
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopEnd
@@ -90,8 +99,8 @@ fun SrdceButton(viewModel: FavReceptyViewModel, recepty: FavRecepty) {
             ) {
             Icon(
                 imageVector = Icons.Filled.Favorite,
-                contentDescription = "Obľúbený",
-                tint = if (isFavorite) Color.Red else Color.DarkGray,
+                contentDescription = stringResource(R.string.oblubene),
+                tint = if (isFavorite) Color.Red else Color.Black,
                 modifier = Modifier.size(48.dp)
             )
         }
@@ -109,9 +118,65 @@ fun SrdceButton(viewModel: FavReceptyViewModel, recepty: FavRecepty) {
         ) {
             Icon(
                 Icons.Filled.Add,
-                contentDescription = "Add",
+                contentDescription = stringResource(R.string.pridaj),
                 modifier = Modifier
                     .size(30.dp)
             )
         }
     }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MoreVertButton(modifier: Modifier = Modifier) {
+    val (zobrazUlozButton, setZobrazUlozButton) = remember { mutableStateOf(false) }
+    val (zobrazDialog, setZobrazDialog) = remember { mutableStateOf(false) }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        if (zobrazUlozButton) {
+            Button(
+                onClick = {
+                    setZobrazDialog(true)
+                    setZobrazUlozButton(false)
+                },
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(text = stringResource(R.string.ulozit))
+            }
+        } else {
+            IconButton(
+                onClick = { setZobrazUlozButton(true) }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.MoreVert,
+                    contentDescription = stringResource(R.string.bodky),
+                    modifier = Modifier.size(48.dp)
+                )
+            }
+        }
+        if (zobrazDialog) {
+            AlertDialog(
+                onDismissRequest = { setZobrazDialog(false) },
+            ) {
+                Box(
+                    modifier = Modifier
+                        .background(Color.White),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(stringResource(R.string.recept_ulozeny))
+                    TextButton(
+                        onClick = { setZobrazDialog(false)}
+                    ) {
+                        Text(text = stringResource(R.string.ok),
+                            modifier = Modifier
+                                .padding(top = 90.dp)
+                                .size(40.dp)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

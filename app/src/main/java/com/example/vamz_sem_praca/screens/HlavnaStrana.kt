@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
@@ -33,7 +34,8 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 class HlavnaStrana {
     @Composable
     fun HlStrana(
-        navController: NavHostController
+        navController: NavHostController,
+        searchViewModel: HladajReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -61,9 +63,13 @@ class HlavnaStrana {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.app_name),
-                                onMenuClick = { scope.launch { drawerState.open() }
+                                onMenuClick = { scope.launch { drawerState.open() } }
+                            ) { searchQuery ->
+                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
+                                if (foundRecipe != null) {
+                                    navController.navigate("recept/${foundRecipe.id}")
                                 }
-                            )
+                            }
                             Spacer(modifier = Modifier.height(10.dp))
                             ObrazokRanajky(navController)
                             Spacer(modifier = Modifier.height(10.dp))
@@ -123,7 +129,10 @@ class HlavnaStrana {
     @Composable
     fun HlavnaStranaPreview() {
         Vamz_sem_pracaTheme {
-            HlStrana(rememberNavController(), )
+            HlStrana(
+                rememberNavController(),
+                HladajReceptyViewModel()
+            )
         }
     }
 }
