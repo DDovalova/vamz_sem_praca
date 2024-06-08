@@ -17,19 +17,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.PrevodJednotiekViewModel
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import java.text.NumberFormat
@@ -45,10 +43,11 @@ Podobný návrh z cvičenia 5
 class PrevodGnaH {
     @Composable
     fun PrevodJednotiekGram(
-        navController: NavHostController
+        navController: NavHostController,
+        viewModel: PrevodJednotiekViewModel  = viewModel()
     ) {
-        var vlozenaHod by remember { mutableStateOf("") }
-        var roundUp by remember { mutableStateOf(false) }
+        val vlozenaHod by viewModel::vlozenaHod
+        val roundUp by viewModel::roundUp
 
         val amount = vlozenaHod.toDoubleOrNull() ?: 0.0
         val hrncek = VypocetGnaH(amount, roundUp)
@@ -85,7 +84,7 @@ class PrevodGnaH {
                             Spacer(modifier = Modifier.height(100.dp))
                             UpravaCisla(
                                 value = vlozenaHod,
-                                onValueChange = { vlozenaHod = it },
+                                onValueChange = { viewModel.vlozenaHod = it },
                                 labelText = stringResource(R.string.mnozstvo_v_gram),
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
@@ -94,7 +93,7 @@ class PrevodGnaH {
                             )
                             ZaokruhliCislo(
                                 roundUp = roundUp,
-                                onRoundUpChanged = { roundUp = it },
+                                onRoundUpChanged = { viewModel.roundUp = it },
                                 modifier = Modifier
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
@@ -117,7 +116,7 @@ class PrevodGnaH {
     /**
      * Výpočet množstva z gramoch na hrnčeky na základe vloženej hodnoty používateľa
      */
-    private fun VypocetGnaH(amount: Double, roundUp: Boolean): String {
+    fun VypocetGnaH(amount: Double, roundUp: Boolean): String {
         var hrncek = amount / 150
         if (roundUp) {
             hrncek = ceil(hrncek)

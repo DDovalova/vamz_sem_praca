@@ -15,7 +15,6 @@ import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
 class MainActivity : ComponentActivity() {
     private val favReceptyViewModel by lazy { ViewModelProvider(this).get(FavReceptyViewModel::class.java) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

@@ -37,7 +37,7 @@ fun Navigacia(
 
     NavHost(navController = navController, startDestination = "uvodnaStrana") {
         composable("uvodnaStrana") { UvodnaStrana().UvodStrana(navController) }
-        composable("hlavnaStrana") { HlavnaStrana().HlStrana(navController) }//searchViewModel
+        composable("hlavnaStrana") { HlavnaStrana().HlStrana(navController) }
         composable("ranajky") { Ranajky().RanajkyStrana(navController, viewModel) }
         composable("obed") { Obed().ObedStrana(navController, viewModel) }
         composable("vecera") { Vecera().VeceraStrana(navController, viewModel) }

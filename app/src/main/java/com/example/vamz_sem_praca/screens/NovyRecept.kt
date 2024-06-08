@@ -20,11 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,7 +31,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vamz_sem_praca.R
+import com.example.vamz_sem_praca.data.ReceptViewModel
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorTextField
@@ -48,13 +46,14 @@ import kotlinx.coroutines.launch
 class NovyRecept {
     @Composable
     fun VytvorRecepty(
-        navController: NavHostController
+        navController: NavHostController,
+        receptViewModel: ReceptViewModel = viewModel()
     ) {
-        var receptText by remember { mutableStateOf("") }
-        var surovinyList by remember { mutableStateOf(listOf("")) }
-        var mnozstvaList by remember { mutableStateOf(listOf("")) }
-        var postupText by remember { mutableStateOf("") }
-        var poznamkyText by remember { mutableStateOf("") }
+        val receptText by receptViewModel::receptText
+        val surovinyList by receptViewModel::surovinyList
+        val mnozstvaList by receptViewModel::mnozstvaList
+        val postupText by receptViewModel::postupText
+        val poznamkyText by receptViewModel::poznamkyText
 
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -88,7 +87,7 @@ class NovyRecept {
                             Spacer(modifier = Modifier.height(0.dp))
                             VytvorRecept(
                                 value = receptText,
-                                onValueChange = { receptText = it },
+                                onValueChange = { receptViewModel.receptText  = it },
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
@@ -107,11 +106,11 @@ class NovyRecept {
                             VytvorSurovinu(
                                 surovinaValue = surovina,
                                 onSurovinaChange = { newSurovina ->
-                                    surovinyList = surovinyList.toMutableList().apply { set(index, newSurovina) }
+                                    receptViewModel.surovinyList = receptViewModel.surovinyList.toMutableList().apply { set(index, newSurovina) }
                                 },
                                 mnozstvoValue = mnozstvaList.getOrNull(index) ?: "",
                                 onMnozstvoChange = { newMnozstvo ->
-                                    mnozstvaList = mnozstvaList.toMutableList().apply { set(index, newMnozstvo) }
+                                    receptViewModel.mnozstvaList = receptViewModel.mnozstvaList.toMutableList().apply { set(index, newMnozstvo) }
                                 },
                                 modifier = Modifier
                                     .padding(bottom = 16.dp)
@@ -119,8 +118,8 @@ class NovyRecept {
                             )
                         }
                             ViacButton {
-                                surovinyList = surovinyList + ""
-                                mnozstvaList = mnozstvaList + ""
+                                receptViewModel.surovinyList = receptViewModel.surovinyList + ""
+                                receptViewModel.mnozstvaList = receptViewModel.mnozstvaList + ""
                             }
                             Text(
                                 text = stringResource(R.string.postup),
@@ -134,7 +133,7 @@ class NovyRecept {
                                 )
                             VytvorPostup(
                                 value = postupText,
-                                onValueChange = { postupText = it },
+                                onValueChange = { receptViewModel.postupText = it },
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
@@ -151,7 +150,7 @@ class NovyRecept {
                             )
                             VytvorPoznamky(
                                 value = poznamkyText,
-                                onValueChange = { poznamkyText = it },
+                                onValueChange = { receptViewModel.poznamkyText = it },
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()

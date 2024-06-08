@@ -38,23 +38,19 @@ import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Mangova
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Star
-import com.example.vamz_sem_praca.data.FavRecepty
-
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.vamz_sem_praca.data.ReceptViewModel
 
 @Composable
 fun VrchnyPanel(
     nazovStrany: String,
     onMenuClick: () -> Unit,
-    //onSearchClick: (String?) -> Unit,
     navController: NavHostController,
-    //destination: () -> String,
-    //recepty: FavRecepty
+    viewModel: ReceptViewModel = viewModel()
 ) {
-    var zobrazHladajField by remember { mutableStateOf(false) }
-    var hladanyText by remember { mutableStateOf("") }
-    //var hladanyRecept by remember { mutableStateOf("") }
+    val zobrazHladajField by viewModel::zobrazHladajField
+    val hladanyText by viewModel::hladanyText
 
-   // val destination  = destination(recepty.nazovR)
     val lievanceString = stringResource(R.string.lievance)
     val milkshakeString = stringResource(R.string.milkshake)
     val cestovinyString = stringResource(R.string.cestoviny)
@@ -80,7 +76,7 @@ fun VrchnyPanel(
             if (zobrazHladajField) {
                 TextField(
                     value = hladanyText,
-                    onValueChange = { hladanyText = it },
+                    onValueChange = { viewModel.hladanyText = it },
                     modifier = Modifier
                         .background(Mangova)
                         .padding(horizontal = 10.dp, vertical = 0.dp),
@@ -110,7 +106,7 @@ fun VrchnyPanel(
                     }
                     navController.navigate(destination)
                 }
-                zobrazHladajField = !zobrazHladajField
+                viewModel.zobrazHladajField = !zobrazHladajField
             }) {
                 Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.hladaj))
             }
