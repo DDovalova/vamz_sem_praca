@@ -27,7 +27,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.R
-import com.example.vamz_sem_praca.data.PrevodJednotiekViewModel
+import com.example.vamz_sem_praca.data.ReceptViewModel
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import java.text.NumberFormat
@@ -44,10 +44,10 @@ class PrevodGnaH {
     @Composable
     fun PrevodJednotiekGram(
         navController: NavHostController,
-        viewModel: PrevodJednotiekViewModel  = viewModel()
+        receptViewModel: ReceptViewModel = viewModel()
     ) {
-        val vlozenaHod by viewModel::vlozenaHod
-        val roundUp by viewModel::roundUp
+        val vlozenaHod by receptViewModel::vlozenaHod
+        val roundUp by receptViewModel::roundUp
 
         val amount = vlozenaHod.toDoubleOrNull() ?: 0.0
         val hrncek = VypocetGnaH(amount, roundUp)
@@ -84,7 +84,7 @@ class PrevodGnaH {
                             Spacer(modifier = Modifier.height(100.dp))
                             UpravaCisla(
                                 value = vlozenaHod,
-                                onValueChange = { viewModel.vlozenaHod = it },
+                                onValueChange = { receptViewModel.vlozenaHod = it },
                                 labelText = stringResource(R.string.mnozstvo_v_gram),
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
@@ -93,7 +93,7 @@ class PrevodGnaH {
                             )
                             ZaokruhliCislo(
                                 roundUp = roundUp,
-                                onRoundUpChanged = { viewModel.roundUp = it },
+                                onRoundUpChanged = { receptViewModel.roundUp = it },
                                 modifier = Modifier
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)

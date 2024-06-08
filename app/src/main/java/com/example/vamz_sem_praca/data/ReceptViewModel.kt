@@ -13,4 +13,6 @@ class ReceptViewModel : ViewModel() {
     var poznamkyText by mutableStateOf("")
     var hladanyText by mutableStateOf("")
     var zobrazHladajField by mutableStateOf(false)
+    var vlozenaHod by mutableStateOf("")
+    var roundUp by mutableStateOf(false)
 }
