@@ -41,4 +41,131 @@
     <string name="ulozit">Uložiť</string>
     <string name="recept_ulozeny">Recept bol uložený!</string>
     <string name="ok">OK</string>
+
+    <string name="lievance_muka">11/3 hrnčeka hladkej múky</string>
+    <string name="lievance_kypraci_prasok">1 kypriaci prášok do pečiva</string>
+    <string name="lievance_cukor">2 lyžice cukru</string>
+    <string name="lievance_vajicka">1 veľké vajce</string>
+    <string name="lievance_maslo">4 lyžice rozpusteného masla</string>
+    <string name="lievance_mlieko">1 hrnček mlieka</string>
+    <string name="lievance_vanilka">2 lyžičky vanilkového extraktu</string>
+    <string name="lievance_sol">štipka soli</string>
+
+    <string name="lievance_postup">
+        Vo veľkej miske vyšľahajte múku, cukor, prášok do pečiva a soľ.
+        V stredne veľkej miske vyšľahajte mlieko, vajce, rozpustené maslo a vanilku, kým sa dobre nespoja.
+        Nalejte mliečnu zmes do múky a premiešajte len do spojenia.
+        (Je v poriadku, ak v ceste zostanú malé hrudky. Tie vlastne pomáhajú vytvoriť nadýchanejšie palacinky!)
+        Rozohrejte veľkú panvicu alebo grilovaciu dosku na stredne vysokú teplotu.
+        Keď je horúca, potrite ju maslom, aby sa jemne namastila.
+        Pracujte po častiach a na každú palacinku pridajte ¼ šálky cesta.
+        Varíme niekoľko minút, kým spodná strana nezíska zlatistú farbu a na vrchu sa nezačnú objavovať bublinky, potom otočte a varte ďalšiu minútu alebo kým nie sú palacinky zlatohnedé.
+        S každou novou várkou palaciniek pridajte na panvicu viac masla.
+        Podávajte horúce s maslom a poliate javorovým sirupom.
+    </string>
+    <string name="lievance_poznamky">
+        Nemiešajte cesto na palacinky príliš dlho, aby neboli ťažké.
+        Hrče v ceste sú v poriadku.
+        Podávajte s javorovým sirupom a inými prírodne sladkými prísadami.
+        Ak chcete raňajky ešte výnimočnejšie, pridajte šľahačku alebo čokoládu.
+        Nenechajte cesto stáť dlho, lebo prášok do pečiva sa aktivuje.
+        Palacinky obráťte len raz, keď sa na vrchu vytvoria bubliny.
+        Udržujte ich teplé v rúre.
+        Nepreplňte cesto múkou, aby neboli suché.
+    </string>
+
+    <string name="polievka_olej">3 lyžice olivového oleja</string>
+    <string name="polievka_maslo">2 lyžice rozpusteného masla</string>
+    <string name="polievka_cibula">1 biela nakrájaná cibuľa</string>
+    <string name="polievka_cesnak">6 strúčikov cesnaku</string>
+    <string name="polievka_paradajky">2 plechovky paradajkového pretlaku</string>
+    <string name="polievka_vody">3 hrnčeky vody alebo kuracieho vývaru</string>
+    <string name="polievka_cukor">1 lyžica granulovaného cukru</string>
+    <string name="polievka_korenie">1/2 lyžičky čierneho korenia</string>
+    <string name="polievka_sol">Soľ podľa chuti</string>
+    <string name="polievka_smotana">3/4 hrnčeky smotany</string>
+    <string name="polievka_bazalka">Čerstvá nasekaná bazalka</string>
+    <string name="polievka_postup">
+        V hrnci zľahka zohrejte olivový olej a maslo.
+        Ohrejte na stredne silnom ohni, kým sa maslo neroztaví.
+        Pridajte cibuľu.
+        Varte za občasného miešania, kým sa nezjemní, asi 8 minút.
+        Pridajte cesnak a varte ďalších 5 minút alebo kým nebude veľmi voňavý a len začne hnednúť.
+        Pridajte paradajky.
+        Otočte plechovky s časťou kuracieho vývaru, aby ste dostali zvyšok paradajkových štiav, a nalejte do hrnca spolu s ostatným vývarom.
+        Vmiešajte cukor a čierny korenie.
+        Povarte asi 10 minút.
+        Znížte teplotu na stredne nízku a nechajte ďalej povariť asi 30 minút, občas premiešajte.
+        Odstráňte z tepla.
+        Použite ponorný mixér na rozdrvovanie paradajok podľa vašej chuti, alebo kým nedosiahnete požadovanú konzistenciu.
+        (Nepreporúčam prenášať polievku do mixéra s vysokou rýchlosťou, pretože miešanie olivového oleja môže spôsobiť hořkú chuť.
+        Zdrobte paradajky pomocou kartáča na zemiaky.)
+        Ochutnajte a prípadne pridajte soľ.
+        Vmiešajte smotanu.
+        Podávajte okamžite s čerstvou bazalkou.
+    </string>
+    <string name="polievka_poznamky">
+        Nepoužívajte vysokorýchlostný mixér, pretože olivový olej pri rýchlych rýchlostiach môže chuť horknúť.
+        Ak nemáte ponorný mixér, použite rastlinný olej alebo maslo na rozmixovanie polievky.
+        Môžete aj použiť kartáč na zemiaky na rozbíjanie paradajok.
+        Použite hrniec zo štíhlej ocele alebo s emalovaným povrchom, aby sa zabránilo kovovej chuti v polievke.
+        Ak chcete zlepšiť chuť polievky, pridajte po vypnutí tepla do hrnca bazalkové lístky a rozmixujte.
+        Na ľahšiu verziu použite polovičnú smotanu alebo znížte množstvo tučnej smotany.
+        Pre vegánsku verziu použite extra panenský olivový olej alebo vegánske maslo, zeleninový vývar a kokosové mlieko.
+    </string>
+
+    <string name="cestoviny_cestovina">454 g cestovín fettuccine</string>
+    <string name="cestoviny_maso">450 g kuracie mäso bez kože a kostí</string>
+    <string name="cestoviny_sol">3/4 lyžičky soli</string>
+    <string name="cestoviny_korenie">1/4 lyžičky mletého čierneho korenia</string>
+    <string name="cestoviny_olej">2 lyžice olivového oleja</string>
+    <string name="cestoviny_maslo">1/2 hrnčeka masla</string>
+    <string name="cestoviny_smotana">2 hrnčeky smotany</string>
+    <string name="cestoviny_syr">1 hrnček strúhaného parmezánu</string>
+    <string name="cestoviny_vňať">Nakrájaná čerstvá petržlenová vňať na ozdobenie</string>
+    <string name="cestoviny_postup">
+        Dajte veľký hrniec soľenej vody variť na stredne vysokú teplotu.
+        Kým voda príde do varu, osolte a okorenite kuracie mäso.
+        Na veľkej panvici na stredne vysokom ohni zohrejte olej a maslo.
+        Pridajte kuracie mäso a opražte, kým nebude obojstranne hnedé, asi 7 až 9 minút na každej strane, a teplomer v najhrubšej časti každého kúsku ukáže 165°F.
+        Odoberieme z panvice a zakryjeme, aby sme udržali teplé.
+        Do vriacej vody pridajte cestoviny a varíme podľa návodu na obale.
+        Dobre odkvapkajte, pričom si odložíme ½ šálky varenej vody.
+        Udržujeme teplé. Pre omáčku: V tej istej panvici, v ktorej ste varili kuracie mäso, zmiešajte smotanu, maslo a cesnak.
+        Varte na strednej teplote, často miešajte, kým sa maslo neroztaví.
+        Vmiešajte soľ a korenie.
+        Privarte na mierny var.
+        Varíme, neustále miešajte, kým omáčka trochu nezhustne, asi 5 minút.
+        Postupne vmiešajte parmazánový syr, kým nebude hladký.
+        Odoberieme z tepla.
+        Pridajte uvarené cestoviny.
+        Orestujte, pridajte trochu rezervovanej varenej vody podľa potreby na zriedenie omáčky.
+        Kuracie prsia nakrájame na pásiky hrubé 1/2 palca.
+        Cestoviny rozdelíme do misky, na ne položíme nakrájané kuracie mäso a ozdobíme petržlenom.
+    </string>
+    <string name="cestoviny_poznamky">
+        Vždy je dobré zachovať vodu z cestovín.
+        Môžete ju použiť na zriedenie príliš hustých omáčok alebo na opravu rozbitých.
+        Ak je alfredo omáčka tekutá, pridajte viac parmazánu až po zmiešaní s cestovinami, kde škrob zahustí omáčku.
+        Pri varení cestovín použite dostatočne veľký hrniec a dosť vody, aby sa cestoviny nelepili.
+        Ak je panvica malá, pridávajte cestoviny postupne.
+        Nechajte kuracie fettuccine alfredo nestať dlho, aby sa omáčka nevysušila.
+        Pridajte do omáčky niekoľko štipiek červeného korenia pre pikantnosť.
+    </string>
+
+    <string name="milkshake_zmrzlina"> 5 lyžíc zmrzliny</string>
+    <string name="milkshake_mlieko">1/4 hrčeka mlieka</string>
+    <string name="milkshake_postup">
+        Zmiešajte zmrzlinu a mlieko v mixéri a rozmixujte na nízkej rýchlosti, kým nezískate hladkú konzistenciu.
+        Nalejte do šálky a ozdobte šľahačkou, posýpkami a marhuľou podľa chuti.
+    </string>
+    <string name="milkshake_poznamky">
+        Pre ešte krémovitejší milkshake skúste namiesto mlieka použiť smotanu.
+        Pri nákupe zmrzliny si overte, že je to pravá 100% mliečna zmrzlina, nie "mrazený dezert" z rastlinných olejov.
+        Pred servírovaním nechajte zmrzlinu krátko odpočívať na izbovej teplote, aby sa ľahšie dala naliať.
+        Ak je milkshake príliš hustý, pridajte postupne trochu mlieka.
+        Pred nalievaním do skleníc ich predchládte v mrazničke.
+        Namiesto plechovky šľahačky môžete vyskúšať domácu šľahačku.
+        Nepridávajte ľad, pretože by nápoj zriedil.
+    </string>
 </resources>

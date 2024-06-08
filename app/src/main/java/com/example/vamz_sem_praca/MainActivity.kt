@@ -10,29 +10,24 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
-//import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import com.example.vamz_sem_praca.navigacia.Navigacia
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
 class MainActivity : ComponentActivity() {
     private val favReceptyViewModel by lazy { ViewModelProvider(this).get(FavReceptyViewModel::class.java) }
-    //private val hladajReceptyViewModel by lazy { ViewModelProvider(this).get(HladajReceptyViewModel::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             Vamz_sem_pracaTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigacia(viewModel = favReceptyViewModel)//searchViewModel = hladajReceptyViewModel
+                    Navigacia(viewModel = favReceptyViewModel)
                 }
             }
         }
     }
 }
-
-
-

@@ -1,7 +1,9 @@
 package com.example.vamz_sem_praca.utvary
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -72,4 +74,20 @@ fun VytvorTextField(
         keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Text),
         modifier = modifier.fillMaxWidth()
     )
+}
+
+@Composable
+fun TextList(textResourceIds: List<Int>) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+    ) {
+        textResourceIds.forEach { textResId ->
+            Text(
+                text = stringResource(id = textResId),
+                modifier = Modifier
+                    .padding(vertical = 4.dp)
+            )
+        }
+    }
 }

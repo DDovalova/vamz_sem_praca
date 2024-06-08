@@ -86,7 +86,7 @@ fun VytvorButton(
             containerColor = Mangova,
             contentColor = Color.White,
             modifier = Modifier
-                .padding(top = 500.dp)
+                .padding(top = 400.dp)
                 .padding(16.dp)
         ) {
             Icon(

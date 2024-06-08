@@ -107,10 +107,10 @@ fun ObrazokSTextom(
         )
         Text(
             text = text,
-            fontSize = 50.sp,
+            fontSize = 60.sp,
             fontFamily = FontFamily.Cursive,
             fontWeight = FontWeight.Bold,
-            lineHeight = 50.sp,
+            lineHeight = 60.sp,
             textAlign = TextAlign.Start,
             modifier = Modifier
                 .align(Alignment.BottomStart)

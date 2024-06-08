@@ -92,7 +92,7 @@ class NovyRecept {
                                 modifier = Modifier
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
-                        )
+                            )
                             Text(
                                 text = stringResource(R.string.suroviny),
                                 fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
@@ -102,7 +102,7 @@ class NovyRecept {
                                     .align(alignment = Alignment.Start)
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
-                        )
+                            )
                             surovinyList.forEachIndexed { index, surovina ->
                             VytvorSurovinu(
                                 surovinaValue = surovina,
