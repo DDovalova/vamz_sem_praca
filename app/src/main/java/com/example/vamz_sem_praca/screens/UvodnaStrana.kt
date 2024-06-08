@@ -52,7 +52,7 @@ class UvodnaStrana {
            Spacer(modifier = Modifier.height(32.dp))
            NavigateButton(
                navController = navController,
-               destination = "hlavnaStrana",
+               destination = {"hlavnaStrana"},
                buttonText = stringResource(R.string.zaciname)
            )
        }

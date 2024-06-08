@@ -27,7 +27,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Hneda,//TmavaOranzova,
+    primary = TmavaOranzova,
     secondary = SvetlaOranzova,
     tertiary = Oranzova
 

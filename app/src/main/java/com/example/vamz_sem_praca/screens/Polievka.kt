@@ -22,23 +22,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.vamz_sem_praca.data.FavRecepty
-import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.R
-import kotlinx.coroutines.launch
+import com.example.vamz_sem_praca.data.FavRecepty
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
-import com.example.vamz_sem_praca.utvary.NavigateButton
-import com.example.vamz_sem_praca.utvary.ObrazokSTextomASrdcom
+import com.example.vamz_sem_praca.utvary.ObrazokSTextom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
-import com.example.vamz_sem_praca.utvary.VytvorButton
-import com.example.vamz_sem_praca.utvary.SrdceButton
+import kotlinx.coroutines.launch
 
-class Dezert {
+class Polievka {
     @Composable
-    fun DezertStrana(
-        navController: NavHostController,
-        viewModel: FavReceptyViewModel
+    fun PolievkaStrana(
+        navController: NavHostController
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -65,17 +60,11 @@ class Dezert {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.dezert),
+                                nazovStrany = stringResource(R.string.paradajkova_polievka),
                                 onMenuClick = { scope.launch { drawerState.open() } },
                                 navController = navController
                             )
-                            ObrazokMilkshake(viewModel, navController)
-                            NavigateButton(
-                                navController = navController,
-                                destination = {"milkshake"},
-                                buttonText = stringResource(R.string.milkshake)
-                            )
-                            VytvorButton(navController)
+                            ObrazokPolievka()
                         }
                     }
                 )
@@ -84,30 +73,26 @@ class Dezert {
     }
 
     @Composable
-    fun ObrazokMilkshake(
-        viewModel: FavReceptyViewModel,
-        navController: NavHostController
+    fun ObrazokPolievka(
     ) {
-        val milkshake = FavRecepty(
+        FavRecepty(
             id = 1,
-            nazovR = stringResource(R.string.milkshake),
-            obrazokR = R.drawable.milkshake,
-            typ = stringResource(R.string.dezert)
+            nazovR = stringResource(R.string.paradajkova_polievka),
+            obrazokR = R.drawable.paradajkova_polievka,
+            typ = stringResource(R.string.paradajkova_polievka)
         )
-        ObrazokSTextomASrdcom(
-            imagePainter = painterResource(R.drawable.milkshake),
-            text = stringResource(R.string.milkshake),
-            favoriteButton = { SrdceButton(viewModel, milkshake, navController) }
+        ObrazokSTextom(
+            imagePainter = painterResource(R.drawable.paradajkova_polievka),
+            text = stringResource(R.string.paradajkova_polievka)
         )
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun DezertPreview() {
+    fun PolievkaPreview() {
         Vamz_sem_pracaTheme {
-            DezertStrana(
-                rememberNavController(),
-                FavReceptyViewModel()
+            PolievkaStrana(
+                rememberNavController()
             )
         }
     }

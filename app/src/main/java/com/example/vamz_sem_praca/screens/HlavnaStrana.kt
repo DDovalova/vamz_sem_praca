@@ -3,7 +3,7 @@ package com.example.vamz_sem_praca.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.R
-import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
@@ -34,14 +33,16 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 class HlavnaStrana {
     @Composable
     fun HlStrana(
-        navController: NavHostController,
-        searchViewModel: HladajReceptyViewModel
+        navController: NavHostController
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
 
         ModalNavigationDrawer(
             drawerState = drawerState,
+            modifier = Modifier
+                .statusBarsPadding()
+                .safeDrawingPadding(),
             drawerContent = {
                 MenuPanel(
                     navController = navController,
@@ -53,7 +54,7 @@ class HlavnaStrana {
                     content = { padding ->
                         Column(
                             modifier = Modifier
-                                .fillMaxSize()
+                                .fillMaxWidth()
                                 .statusBarsPadding()
                                 .verticalScroll(rememberScrollState())
                                 .safeDrawingPadding()
@@ -62,14 +63,10 @@ class HlavnaStrana {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             VrchnyPanel(
-                                nazovStrany = stringResource(R.string.app_name),
-                                onMenuClick = { scope.launch { drawerState.open() } }
-                            ) { searchQuery ->
-                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
-                                if (foundRecipe != null) {
-                                    navController.navigate("recept/${foundRecipe.id}")
-                                }
-                            }
+                                nazovStrany = stringResource(R.string.hl_strana),
+                                onMenuClick = { scope.launch { drawerState.open() } },
+                                navController = navController
+                            )
                             Spacer(modifier = Modifier.height(10.dp))
                             ObrazokRanajky(navController)
                             Spacer(modifier = Modifier.height(10.dp))
@@ -130,10 +127,8 @@ class HlavnaStrana {
     fun HlavnaStranaPreview() {
         Vamz_sem_pracaTheme {
             HlStrana(
-                rememberNavController(),
-                HladajReceptyViewModel()
+                rememberNavController()
             )
         }
     }
 }
-

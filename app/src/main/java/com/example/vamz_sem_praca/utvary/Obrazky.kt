@@ -57,7 +57,7 @@ fun ObrazokSButtonom(
 }
 
 @Composable
-fun ObrazokSTextom(
+fun ObrazokSTextomASrdcom(
     imagePainter: Painter,
     text: String,
     favoriteButton: @Composable () -> Unit,
@@ -76,7 +76,6 @@ fun ObrazokSTextom(
         Text(
             text = text,
             fontSize = 50.sp,
-            //fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
             fontFamily = FontFamily.Cursive,
             fontWeight = FontWeight.Bold,
             lineHeight = 50.sp,
@@ -85,8 +84,37 @@ fun ObrazokSTextom(
                 .align(Alignment.BottomStart)
                 .padding(10.dp)
         )
-        //SrdceButton()
         favoriteButton()
         MoreVertButton(modifier = Modifier.align(Alignment.BottomEnd))
+    }
+}
+
+@Composable
+fun ObrazokSTextom(
+    imagePainter: Painter,
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        Image(
+            painter = imagePainter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 1f,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(7 / 6f)
+        )
+        Text(
+            text = text,
+            fontSize = 50.sp,
+            fontFamily = FontFamily.Cursive,
+            fontWeight = FontWeight.Bold,
+            lineHeight = 50.sp,
+            textAlign = TextAlign.Start,
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(10.dp)
+        )
     }
 }

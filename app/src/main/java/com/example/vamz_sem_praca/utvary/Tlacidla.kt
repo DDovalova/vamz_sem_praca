@@ -39,11 +39,31 @@ import androidx.compose.material3.TextButton
 @Composable
 fun NavigateButton(
     navController: NavHostController,
-    destination: String,
+    destination: () -> String,
     buttonText: String
 ) {
     Button(
-        onClick = { navController.navigate(destination) },
+        onClick = { navController.navigate(destination()) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 0.dp, horizontal = 15.dp)
+    ) {
+        Text(buttonText)
+    }
+}
+
+@Composable
+fun NavigateButtonFavRecept(
+    recepty: FavRecepty,
+    navController: NavHostController,
+    destination: (String) -> String,
+    buttonText: String
+) {
+    Button(
+        onClick = {
+            val destination  = destination(recepty.nazovR)
+            navController.navigate(destination)
+         },
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 0.dp, horizontal = 15.dp)
@@ -66,7 +86,7 @@ fun VytvorButton(
             containerColor = Mangova,
             contentColor = Color.White,
             modifier = Modifier
-                .padding(top = 400.dp)
+                .padding(top = 500.dp)
                 .padding(16.dp)
         ) {
             Icon(
@@ -83,7 +103,7 @@ fun VytvorButton(
 fun SrdceButton(
     viewModel: FavReceptyViewModel,
     recepty: FavRecepty,
-    //navController: NavHostController
+    navController: NavHostController
 ) {
     var isFavorite by remember { mutableStateOf(viewModel.isFavorite(recepty)) }
 
@@ -96,7 +116,7 @@ fun SrdceButton(
                 isFavorite = !isFavorite
                 viewModel.PrepinacOblubene(recepty)
             }
-            ) {
+        ) {
             Icon(
                 imageVector = Icons.Filled.Favorite,
                 contentDescription = stringResource(R.string.oblubene),
@@ -106,6 +126,7 @@ fun SrdceButton(
         }
     }
 }
+
 
  @Composable
     fun ViacButton(onClick: () -> Unit) {

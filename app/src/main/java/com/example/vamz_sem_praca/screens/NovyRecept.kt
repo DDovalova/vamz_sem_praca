@@ -36,21 +36,19 @@ import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.example.vamz_sem_praca.R
-import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorTextField
 import com.example.vamz_sem_praca.utvary.ViacButton
 import kotlinx.coroutines.launch
 
-/*
+/**
 *
 */
 class NovyRecept {
     @Composable
     fun VytvorRecepty(
-        navController: NavHostController,
-        searchViewModel: HladajReceptyViewModel
+        navController: NavHostController
     ) {
         var receptText by remember { mutableStateOf("") }
         var surovinyList by remember { mutableStateOf(listOf("")) }
@@ -84,13 +82,9 @@ class NovyRecept {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.novy_recept),
-                                onMenuClick = { scope.launch { drawerState.open() } }
-                            ) { searchQuery ->
-                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
-                                if (foundRecipe != null) {
-                                    navController.navigate("recept/${foundRecipe.id}")
-                                }
-                            }
+                                onMenuClick = { scope.launch { drawerState.open() } },
+                                navController = navController
+                            )
                             Spacer(modifier = Modifier.height(0.dp))
                             VytvorRecept(
                                 value = receptText,
@@ -269,10 +263,8 @@ class NovyRecept {
     fun NovyReceptPreview() {
         Vamz_sem_pracaTheme {
             VytvorRecepty(
-                rememberNavController(),
-                HladajReceptyViewModel()
+                rememberNavController()
             )
         }
     }
 }
-

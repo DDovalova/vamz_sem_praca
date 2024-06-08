@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.R
-import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
 import java.text.NumberFormat
@@ -40,14 +39,13 @@ import com.example.vamz_sem_praca.utvary.ZaokruhliCislo
 import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
-/*
+/**
 Podobný návrh z cvičenia 5
  */
 class PrevodGnaH {
     @Composable
     fun PrevodJednotiekGram(
-        navController: NavHostController,
-        searchViewModel: HladajReceptyViewModel
+        navController: NavHostController
     ) {
         var vlozenaHod by remember { mutableStateOf("") }
         var roundUp by remember { mutableStateOf(false) }
@@ -81,14 +79,9 @@ class PrevodGnaH {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.prevod_jednotiek),
-                                onMenuClick = {
-                                    scope.launch { drawerState.open() } }
-                            ) { searchQuery ->
-                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
-                                if (foundRecipe != null) {
-                                    navController.navigate("recept/${foundRecipe.id}")
-                                }
-                            }
+                                onMenuClick = { scope.launch { drawerState.open() } },
+                                navController = navController
+                            )
                             Spacer(modifier = Modifier.height(100.dp))
                             UpravaCisla(
                                 value = vlozenaHod,
@@ -137,8 +130,7 @@ class PrevodGnaH {
     fun PrevodJednotiekGramPreview() {
         Vamz_sem_pracaTheme {
             PrevodJednotiekGram(
-                rememberNavController(),
-                HladajReceptyViewModel()
+                rememberNavController()
             )
         }
     }

@@ -24,12 +24,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.R
-import com.example.vamz_sem_praca.data.HladajReceptyViewModel
 import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.MenuPanel
-import com.example.vamz_sem_praca.utvary.NavigateButton
-import com.example.vamz_sem_praca.utvary.ObrazokSTextom
+import com.example.vamz_sem_praca.utvary.NavigateButtonFavRecept
+import com.example.vamz_sem_praca.utvary.ObrazokSTextomASrdcom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.SrdceButton
 
@@ -37,11 +36,15 @@ class OblubeneRecepty {
     @Composable
     fun OblubeneReceptyStrana(
         navController: NavHostController,
-        viewModel: FavReceptyViewModel,
-        searchViewModel: HladajReceptyViewModel
+        viewModel: FavReceptyViewModel
     ) {
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
+
+        val lievanceString = stringResource(R.string.lievance)
+        val milkshakeString = stringResource(R.string.milkshake)
+        val cestovinyString = stringResource(R.string.cestoviny)
+        val polievkaString = stringResource(R.string.paradajkova_polievka)
 
         ModalNavigationDrawer(
             drawerState = drawerState,
@@ -66,23 +69,27 @@ class OblubeneRecepty {
                         ) {
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.oblubene),
-                                onMenuClick = { scope.launch { drawerState.open() } }
-                            ) { searchQuery ->
-                                val foundRecipe = searchViewModel.vyhladajReceptPodlaMena(searchQuery)
-                                if (foundRecipe != null) {
-                                    navController.navigate("recept/${foundRecipe.id}")
-                                }
-                            }
+                                onMenuClick = { scope.launch { drawerState.open() } },
+                                navController = navController
+                            )
                             viewModel.oblubeneRecepty.forEach { recipe ->
-                                ObrazokSTextom(
+                                ObrazokSTextomASrdcom(
                                     imagePainter = painterResource(recipe.obrazokR),
                                     text = recipe.nazovR,
-                                    favoriteButton = { SrdceButton(viewModel, recipe) }
+                                    favoriteButton = { SrdceButton(viewModel, recipe, navController) }
                                 )
-                                NavigateButton(
+                                NavigateButtonFavRecept(
                                     navController = navController,
-                                    //destination = "recipeDetail/${recipe.id}",
-                                    destination = "hlavnaStrana",
+                                    recepty = recipe,
+                                    destination = { receptName ->
+                                        when (receptName) {
+                                            lievanceString -> "lievance"
+                                            milkshakeString -> "milkshake"
+                                            cestovinyString -> "cestoviny"
+                                            polievkaString -> "polievka"
+                                            else -> "oblubene"
+                                        }
+                                    },
                                     buttonText = recipe.nazovR
                                 )
                             }
@@ -99,8 +106,7 @@ class OblubeneRecepty {
         Vamz_sem_pracaTheme {
             OblubeneReceptyStrana(
                 rememberNavController(),
-                FavReceptyViewModel(),
-                HladajReceptyViewModel()
+                FavReceptyViewModel()
             )
         }
     }

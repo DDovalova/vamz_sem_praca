@@ -2,6 +2,7 @@ package com.example.vamz_sem_praca.utvary
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -33,17 +38,27 @@ import kotlinx.coroutines.launch
 import com.example.vamz_sem_praca.ui.theme.Mangova
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Star
+import com.example.vamz_sem_praca.data.FavRecepty
 
 
 @Composable
 fun VrchnyPanel(
     nazovStrany: String,
     onMenuClick: () -> Unit,
-    onSearchClick: (Any?) -> Unit
+    //onSearchClick: (String?) -> Unit,
+    navController: NavHostController,
+    //destination: () -> String,
+    //recepty: FavRecepty
 ) {
-    var showSearchField by remember { mutableStateOf(false) }
-    var searchText by remember { mutableStateOf("") }
+    var zobrazHladajField by remember { mutableStateOf(false) }
+    var hladanyText by remember { mutableStateOf("") }
+    //var hladanyRecept by remember { mutableStateOf("") }
 
+   // val destination  = destination(recepty.nazovR)
+    val lievanceString = stringResource(R.string.lievance)
+    val milkshakeString = stringResource(R.string.milkshake)
+    val cestovinyString = stringResource(R.string.cestoviny)
+    val polievkaString = stringResource(R.string.paradajkova_polievka)
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -62,10 +77,10 @@ fun VrchnyPanel(
             modifier = Modifier.align(Alignment.Center),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (showSearchField) {
+            if (zobrazHladajField) {
                 TextField(
-                    value = searchText,
-                    onValueChange = { searchText = it },
+                    value = hladanyText,
+                    onValueChange = { hladanyText = it },
                     modifier = Modifier
                         .background(Mangova)
                         .padding(horizontal = 10.dp, vertical = 0.dp),
@@ -81,14 +96,21 @@ fun VrchnyPanel(
             }
         }
         Row(
-            modifier = Modifier.align(Alignment.CenterEnd),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.align(Alignment.TopEnd),
+            verticalAlignment = Alignment.Bottom
         ) {
             IconButton(onClick = {
-                if (showSearchField && searchText.isNotBlank()) {
-                    onSearchClick(searchText)
+                if (zobrazHladajField && hladanyText.isNotBlank()) {
+                    val destination = when (hladanyText) {
+                        lievanceString -> "lievance"
+                        milkshakeString -> "milkshake"
+                        cestovinyString -> "cestoviny"
+                        polievkaString -> "polievka"
+                        else -> "hlavnaStrana"
+                    }
+                    navController.navigate(destination)
                 }
-                showSearchField = !showSearchField
+                zobrazHladajField = !zobrazHladajField
             }) {
                 Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.hladaj))
             }
@@ -109,6 +131,10 @@ fun MenuPanel(
                 modifier = Modifier
                     .fillMaxHeight()
                     .background(Mangova)
+                    .statusBarsPadding()
+                    .verticalScroll(rememberScrollState())
+                    .horizontalScroll(rememberScrollState())
+                    .safeDrawingPadding()
                     .padding(horizontal = 16.dp, vertical = 30.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
