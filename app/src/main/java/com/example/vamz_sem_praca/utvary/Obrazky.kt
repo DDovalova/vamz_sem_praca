@@ -22,6 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
+/**
+ * Komponent zobrazuje obrázok s tlačidlom, ktoré slúži na navigáciu na inú obrazovku.
+ *
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ * @param imageRes - zdroj obrázka
+ * @param buttonText - text na tlačidle
+ * @param navigateTo - cieľová obrazovka pre navigáciu po kliknutí na tlačidlo
+ */
 @Composable
 fun ObrazokSButtonom(
     navController: NavHostController,
@@ -56,6 +64,14 @@ fun ObrazokSButtonom(
     }
 }
 
+/**
+ * Komponent zobrazuje obrázok s textom a prispôsobiteľným tlačidlom pre obľúbené recepty.
+ *
+ * @param imagePainter - zdroj obrázka
+ * @param text - text zobrazený na obrázku
+ * @param favoriteButton - funkcia pre tlačidlo obľúbených receptov
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
+ */
 @Composable
 fun ObrazokSTextomASrdcom(
     imagePainter: Painter,
@@ -89,6 +105,14 @@ fun ObrazokSTextomASrdcom(
     }
 }
 
+
+/**
+ * Komponent zobrazuje obrázok s textom.
+ *
+ * @param imagePainter - zdroj obrázka
+ * @param text - text zobrazený na obrázku
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponenty
+ */
 @Composable
 fun ObrazokSTextom(
     imagePainter: Painter,

@@ -34,7 +34,17 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorButton
 import com.example.vamz_sem_praca.utvary.SrdceButton
 
+/**
+ * Trieda pre obrazovku dezertu.
+ */
 class Dezert {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky s dezertom.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param viewModel - viewModel pre manipuláciu s dátami týkajúcimi sa obľúbených receptov
+     */
     @Composable
     fun DezertStrana(
         navController: NavHostController,
@@ -83,6 +93,12 @@ class Dezert {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s textom a srdcom pre milkshake.
+     *
+     * @param viewModel - viewModel pre manipuláciu s dátami týkajúcimi sa obľúbených receptov
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokMilkshake(
         viewModel: FavReceptyViewModel,
@@ -101,6 +117,9 @@ class Dezert {
         )
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky s dezertom.
+     */
     @Preview(showBackground = true)
     @Composable
     fun DezertPreview() {

@@ -34,7 +34,16 @@ import com.example.vamz_sem_praca.utvary.TextList
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import kotlinx.coroutines.launch
 
+/**
+ * Trieda pre obrazovku Milkshake.
+ */
 class Milkshake {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky Milkshake.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun MilkshakeStrana(
         navController: NavHostController
@@ -128,6 +137,9 @@ class Milkshake {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka Milkshake.
+     */
     @Composable
     fun ObrazokMilkshake(
     ) {
@@ -143,6 +155,9 @@ class Milkshake {
         )
     }
 
+    /**
+     * Funkcia pre náhľad na obrazovku Milkshake.
+     */
     @Preview(showBackground = true)
     @Composable
     fun MilkshakePreview() {

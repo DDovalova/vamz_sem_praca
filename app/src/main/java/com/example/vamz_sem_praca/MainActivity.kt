@@ -13,8 +13,21 @@ import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.navigacia.Navigacia
 import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 
+/**
+ * Hlavná aktivita aplikácie.
+ */
 class MainActivity : ComponentActivity() {
-    private val favReceptyViewModel by lazy { ViewModelProvider(this).get(FavReceptyViewModel::class.java) }
+
+    /**
+     * Inštancia ViewModelu pre obľúbené recepty.
+     */
+    val favReceptyViewModel by lazy { ViewModelProvider(this).get(FavReceptyViewModel::class.java) }
+
+    /**
+     * Vytvára aktivitu a nastavuje obsah zložky.
+     *
+     * @param savedInstanceState - stav uložený počas posledného zatvorenia aplikácie.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

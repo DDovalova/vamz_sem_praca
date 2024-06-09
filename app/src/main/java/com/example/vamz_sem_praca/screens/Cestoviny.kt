@@ -34,14 +34,25 @@ import com.example.vamz_sem_praca.utvary.TextList
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import kotlinx.coroutines.launch
 
+/**
+ * Trieda pre stránku Cestoviny.
+ */
 class Cestoviny {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky pre recept Cestoviny.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun CestovinyStrana(
         navController: NavHostController
     ) {
+        // Inicializácia stavu panela
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
 
+        // Zobrazenie panela s menu
         ModalNavigationDrawer(
             drawerState = drawerState,
             drawerContent = {
@@ -51,8 +62,10 @@ class Cestoviny {
                 )
             },
             content = {
+                // Vytvorenie základnej šablóny obrazovky
                 Scaffold(
                     content = { padding ->
+                        // Hlavný stĺpec obsahujúci informácie o recepte Cestoviny
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -63,12 +76,15 @@ class Cestoviny {
                             verticalArrangement = Arrangement.Top,
                             horizontalAlignment = Alignment.Start
                         ) {
+                            // Vrchný panel s názvom recepta Cestoviny
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.cestoviny),
                                 onMenuClick = { scope.launch { drawerState.open() } },
                                 navController = navController
                             )
+                            // Zobrazenie obrázka cestovín s textom
                             ObrazokCestoviny()
+                            // Textový zoznam surovín
                             Text(
                                 text = stringResource(R.string.suroviny),
                                 fontStyle = FontStyle.Italic,
@@ -92,6 +108,7 @@ class Cestoviny {
                                     R.string.cestoviny_vňať
                                 )
                             )
+                            // Text s postupom prípravy
                             Text(
                                 text = stringResource(R.string.postup),
                                 fontStyle = FontStyle.Italic,
@@ -110,6 +127,7 @@ class Cestoviny {
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
                             )
+                            // Text s poznámkami k príprave
                             Text(
                                 text = stringResource(R.string.poznamky),
                                 fontStyle = FontStyle.Italic,
@@ -135,6 +153,9 @@ class Cestoviny {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka receptu Cestoviny.
+     */
     @Composable
     fun ObrazokCestoviny(
     ) {
@@ -150,6 +171,9 @@ class Cestoviny {
         )
     }
 
+    /**
+     * Funkcia pre nahľad na obrazovku s receptom Cestoviny.
+     */
     @Preview(showBackground = true)
     @Composable
     fun CestovinyPreview() {

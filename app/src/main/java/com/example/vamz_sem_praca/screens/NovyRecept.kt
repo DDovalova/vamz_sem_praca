@@ -41,14 +41,22 @@ import com.example.vamz_sem_praca.utvary.ViacButton
 import kotlinx.coroutines.launch
 
 /**
-*
-*/
+ * Trieda pre obrazovku NovyRecept.
+ */
 class NovyRecept {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky NovyRecept.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param receptViewModel - viewModel pre recept, poskytuje údaje a logiku pre správu receptov
+     */
     @Composable
     fun VytvorRecepty(
         navController: NavHostController,
         receptViewModel: ReceptViewModel = viewModel()
     ) {
+        // Získanie údajov z receptViewModel
         val receptText by receptViewModel::receptText
         val surovinyList by receptViewModel::surovinyList
         val mnozstvaList by receptViewModel::mnozstvaList
@@ -79,12 +87,14 @@ class NovyRecept {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Top
                         ) {
+                            // Vrchný panel s názvom stránky a tlačidlom menu
                             VrchnyPanel(
                                 nazovStrany = stringResource(R.string.novy_recept),
                                 onMenuClick = { scope.launch { drawerState.open() } },
                                 navController = navController
                             )
                             Spacer(modifier = Modifier.height(0.dp))
+                            // Textové pole pre názov receptu
                             VytvorRecept(
                                 value = receptText,
                                 onValueChange = { receptViewModel.receptText  = it },
@@ -92,6 +102,7 @@ class NovyRecept {
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
                             )
+                            // Nadpis pre suroviny
                             Text(
                                 text = stringResource(R.string.suroviny),
                                 fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
@@ -102,6 +113,7 @@ class NovyRecept {
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
                             )
+                            // Textové polia pre suroviny a množstvo
                             surovinyList.forEachIndexed { index, surovina ->
                             VytvorSurovinu(
                                 surovinaValue = surovina,
@@ -117,10 +129,12 @@ class NovyRecept {
                                     .fillMaxWidth()
                             )
                         }
+                            // Tlačidlo na pridanie ďalšej suroviny
                             ViacButton {
                                 receptViewModel.surovinyList = receptViewModel.surovinyList + ""
                                 receptViewModel.mnozstvaList = receptViewModel.mnozstvaList + ""
                             }
+                            // Nadpis pre postup
                             Text(
                                 text = stringResource(R.string.postup),
                                 fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
@@ -131,6 +145,7 @@ class NovyRecept {
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
                                 )
+                            // Textové pole pre postup
                             VytvorPostup(
                                 value = postupText,
                                 onValueChange = { receptViewModel.postupText = it },
@@ -138,6 +153,7 @@ class NovyRecept {
                                     .padding(bottom = 32.dp)
                                     .fillMaxWidth()
                             )
+                            // Nadpis pre poznámky
                             Text(
                                 text = stringResource(R.string.poznamky),
                                 fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
@@ -148,6 +164,7 @@ class NovyRecept {
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
                             )
+                            // Textové pole pre poznámky
                             VytvorPoznamky(
                                 value = poznamkyText,
                                 onValueChange = { receptViewModel.poznamkyText = it },
@@ -157,6 +174,7 @@ class NovyRecept {
                                     .padding(bottom = 5.dp)
                                     .padding(horizontal = 20.dp)
                             )
+                            // Tlačidlo na vytvorenie receptu
                             VytvorButton()
                         }
                     }
@@ -165,6 +183,13 @@ class NovyRecept {
         )
     }
 
+    /**
+     * Funkcia pre vytvorenie textového poľa pre názov receptu.
+     *
+     * @param value - aktuálna hodnota názvu receptu
+     * @param onValueChange - funkcia pre aktualizáciu hodnoty názvu receptu
+     * @param modifier - modifier pre úpravu vzhľadu textového poľa
+     */
     @Composable
     fun VytvorRecept(
         value: String,
@@ -181,6 +206,15 @@ class NovyRecept {
         )
     }
 
+    /**
+     * Funkcia pre vytvorenie textového poľa pre surovinu a jej množstvo.
+     *
+     * @param surovinaValue - aktuálna hodnota názvu suroviny
+     * @param onSurovinaChange - funkcia pre aktualizáciu hodnoty názvu suroviny
+     * @param mnozstvoValue - aktuálna hodnota množstva suroviny
+     * @param onMnozstvoChange - funkcia pre aktualizáciu hodnoty množstva suroviny
+     * @param modifier - modifier pre úpravu vzhľadu textových polí
+     */
     @Composable
     fun VytvorSurovinu(
         surovinaValue: String,
@@ -213,6 +247,13 @@ class NovyRecept {
         )
     }
 
+    /**
+     * Funkcia pre vytvorenie textového poľa pre postup receptu.
+     *
+     * @param value - aktuálna hodnota postupu receptu
+     * @param onValueChange - funkcia pre aktualizáciu hodnoty postupu receptu
+     * @param modifier - modifier pre úpravu vzhľadu textového poľa
+     */
     @Composable
     fun VytvorPostup(
         value: String,
@@ -231,6 +272,13 @@ class NovyRecept {
         )
     }
 
+    /**
+     * Funkcia pre vytvorenie textového poľa pre poznámky k receptu.
+     *
+     * @param value - aktuálna hodnota poznámok k receptu
+     * @param onValueChange - funkcia pre aktualizáciu hodnoty poznámok k receptu
+     * @param modifier - modifier pre úpravu vzhľadu textového poľa
+     */
     @Composable
     fun VytvorPoznamky(
         value: String,
@@ -245,6 +293,9 @@ class NovyRecept {
         )
     }
 
+    /**
+     * Funkcia pre vytvorenie tlačidla na vytvorenie receptu.
+     */
     @Composable
     fun VytvorButton() {
         Button(
@@ -257,6 +308,9 @@ class NovyRecept {
         }
     }
 
+    /**
+     * Funkcia pre náhľad stránky vytvorenia nového receptu.
+     */
     @Preview(showBackground = true)
     @Composable
     fun NovyReceptPreview() {

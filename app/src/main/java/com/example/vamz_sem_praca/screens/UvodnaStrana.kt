@@ -33,7 +33,16 @@ import com.example.vamz_sem_praca.ui.theme.Vamz_sem_pracaTheme
 import com.example.vamz_sem_praca.utvary.NavigateButton
 import com.example.vamz_sem_praca.ui.theme.Mangova
 
+/**
+ * Trieda pre úvodnú stránku.
+ */
 class UvodnaStrana {
+
+    /**
+     * Funkcia pre zobrazenie úvodnej stránky.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
    fun UvodStrana(
         navController: NavHostController
@@ -58,6 +67,11 @@ class UvodnaStrana {
        }
    }
 
+    /**
+     * Funkcia pre zobrazenie vrchného panelu s názvom stránky.
+     *
+     * @param nazovStrany - názov stránky
+     */
     @Composable
     fun VrchnyPanel(nazovStrany: String) {
         Row(
@@ -77,6 +91,9 @@ class UvodnaStrana {
         }
     }
 
+    /**
+     * Funkcia pre zobrazenie loga.
+     */
     @Composable
     fun Logo() {
         val image = painterResource(R.drawable.logo)
@@ -91,6 +108,9 @@ class UvodnaStrana {
         )
     }
 
+    /**
+     * Funkcia pre náhľad úvodnej stránky.
+     */
     @Preview(showBackground = true)
     @Composable
     fun UvodnaStranaPreview() {

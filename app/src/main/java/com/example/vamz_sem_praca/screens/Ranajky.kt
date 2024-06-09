@@ -34,7 +34,17 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorButton
 import com.example.vamz_sem_praca.utvary.SrdceButton
 
+/**
+ * Trieda pre raňajky.
+ */
 class Ranajky {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky pre raňajky.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param viewModel - viewModel pre získanie dát receptov
+     */
     @Composable
     fun RanajkyStrana(
         navController: NavHostController,
@@ -83,6 +93,13 @@ class Ranajky {
         )
     }
 
+
+    /**
+     * Funkcia pre zobrazenie obrázka s textom a srdcom pre lievance.
+     *
+     * @param viewModel - viewModel pre získanie dát receptov
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
    @Composable
     fun ObrazokLievance(
         viewModel: FavReceptyViewModel,
@@ -101,6 +118,9 @@ class Ranajky {
         )
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky pre raňajky.
+     */
     @Preview(showBackground = true)
     @Composable
     fun RanajkyPreview() {

@@ -34,7 +34,17 @@ import com.example.vamz_sem_praca.utvary.VytvorButton
 import com.example.vamz_sem_praca.utvary.SrdceButton
 import kotlinx.coroutines.launch
 
+/**
+ * Trieda predstavujúca obrazovku Obed.
+ */
 class Obed {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky Obed.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param viewModel - viewModel pre prácu s obľúbenými receptami
+     */
     @Composable
     fun ObedStrana(
         navController: NavHostController,
@@ -83,6 +93,12 @@ class Obed {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s textom a srdcom pre polievku.
+     *
+     * @param viewModel - viewModel pre prácu s obľúbenými receptami
+     * @param navController - navigácia medzi obrazovkami
+     */
     @Composable
     fun ObrazokParadajkovaPolievka(
         viewModel: FavReceptyViewModel,
@@ -101,7 +117,9 @@ class Obed {
         )
     }
 
-
+    /**
+     * Funkcia pre náhľad na obrazovky obed.
+     */
     @Preview(showBackground = true)
     @Composable
     fun ObedPreview() {

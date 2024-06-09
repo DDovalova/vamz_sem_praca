@@ -38,9 +38,20 @@ import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
 /**
-Podobný návrh z cvičenia 5
+ * Trieda pre prevod jednotiek gramov na hrnčeky.
+ *
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ * @param receptViewModel - viewModel pre získanie dát receptu
+ * (podobný návrh z cvičenia 5)
  */
 class PrevodGnaH {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky pre prevod jednotiek gramov na hrnčeky.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param receptViewModel - viewModel pre získanie dát receptu
+     */
     @Composable
     fun PrevodJednotiekGram(
         navController: NavHostController,
@@ -115,6 +126,10 @@ class PrevodGnaH {
 
     /**
      * Výpočet množstva z gramoch na hrnčeky na základe vloženej hodnoty používateľa
+     *
+     *  @param amount - množstvo vložené používateľom
+     *  @param roundUp - indikátor, či sa má výsledok zaokrúhliť nahor
+     *  @return vypočítané množstvo v hrnčekoch
      */
     fun VypocetGnaH(amount: Double, roundUp: Boolean): String {
         var hrncek = amount / 150
@@ -124,6 +139,9 @@ class PrevodGnaH {
         return NumberFormat.getNumberInstance().format(hrncek)
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky pre prevod jednotiek gramov na hrnčeky.
+     */
     @Preview(showBackground = true)
     @Composable
     fun PrevodJednotiekGramPreview() {

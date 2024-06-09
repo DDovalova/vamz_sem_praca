@@ -30,7 +30,16 @@ import com.example.vamz_sem_praca.utvary.MenuPanel
 import com.example.vamz_sem_praca.utvary.ObrazokSButtonom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 
+/**
+ * Trieda pre hlavnú obrazovku aplikácie.
+ */
 class HlavnaStrana {
+
+    /**
+     * Funkcia pre zobrazenie hlavnej obrazovky.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun HlStrana(
         navController: NavHostController
@@ -82,6 +91,11 @@ class HlavnaStrana {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s tlačidlom pre raňajky.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokRanajky(navController: NavHostController) {
         ObrazokSButtonom(
@@ -92,6 +106,11 @@ class HlavnaStrana {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s tlačidlom pre obed.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokObed(navController: NavHostController) {
         ObrazokSButtonom(
@@ -102,6 +121,11 @@ class HlavnaStrana {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s tlačidlom pre večeru.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokVecera(navController: NavHostController) {
         ObrazokSButtonom(
@@ -112,6 +136,11 @@ class HlavnaStrana {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s tlačidlom pre dezert.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokDezert(navController: NavHostController) {
         ObrazokSButtonom(
@@ -121,6 +150,10 @@ class HlavnaStrana {
             navigateTo = "dezert"
         )
     }
+
+    /**
+     * Funkcia pre náhlad na hlavnú obrazovku.
+     */
 
     @Preview(showBackground = true)
     @Composable

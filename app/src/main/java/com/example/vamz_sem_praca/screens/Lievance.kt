@@ -34,7 +34,15 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.*
 import kotlinx.coroutines.launch
 
+/**
+ * Trieda pre obrazovku Lievance.
+ */
 class Lievance {
+    /**
+     * Funkcia pre zobrazenie obrazovky Lievance.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun LievanceStrana(
         navController: NavHostController
@@ -134,6 +142,10 @@ class Lievance {
         )
     }
 
+
+    /**
+     * Funkcia pre zobrazenie obrázka Lievance.
+     */
     @Composable
     fun ObrazokLievance(
     ) {
@@ -149,6 +161,9 @@ class Lievance {
         )
     }
 
+    /**
+     * Funkcia pre náhľad na obrazovku Lievance.
+     */
     @Preview(showBackground = true)
     @Composable
     fun LievancePreview() {

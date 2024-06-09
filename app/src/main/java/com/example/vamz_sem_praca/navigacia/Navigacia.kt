@@ -23,6 +23,11 @@ import com.example.vamz_sem_praca.screens.UvodnaStrana
 import com.example.vamz_sem_praca.screens.Vecera
 import com.example.vamz_sem_praca.utvary.MenuPanel
 
+/**
+ * Komponent pre navigáciu v aplikácii.
+ *
+ * @param viewModel inštancia [FavReceptyViewModel] pre spracovanie obľúbených receptov.
+ */
 @Composable
 fun Navigacia(
     viewModel: FavReceptyViewModel
@@ -30,11 +35,13 @@ fun Navigacia(
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
+    // Zobrazuje menu panel s nnavigáciou medzi obrazovkami a stavom panela.
     MenuPanel(
         navController = navController,
         drawerState = drawerState
     )
 
+    // Definuje navigáciu jednotlivých obrazoviek (stránky) v aplikácii.
     NavHost(navController = navController, startDestination = "uvodnaStrana") {
         composable("uvodnaStrana") { UvodnaStrana().UvodStrana(navController) }
         composable("hlavnaStrana") { HlavnaStrana().HlStrana(navController) }

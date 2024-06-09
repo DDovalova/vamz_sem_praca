@@ -18,6 +18,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.vamz_sem_praca.R
 
+/**
+ * Komponent pre úpravu číselnej hodnoty.
+ *
+ * @param value - aktuálna hodnota textového poľa
+ * @param onValueChange - funkcia volaná pri zmene hodnoty
+ * @param labelText - text popisujúci textové pole
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
+ */
 @Composable
 fun UpravaCisla(
     value: String,
@@ -35,6 +43,13 @@ fun UpravaCisla(
     )
 }
 
+/**
+ * Komponent pre prepínač zaokrúhľovania čísla.
+ *
+ * @param roundUp - boolean hodnota označujúca, či sa má číslo zaokrúhliť
+ * @param onRoundUpChanged - funkcia volaná pri zmene stavu prepínača
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
+ */
 @Composable
 fun ZaokruhliCislo(
     roundUp: Boolean,
@@ -58,7 +73,14 @@ fun ZaokruhliCislo(
     }
 }
 
-
+/**
+ * Komponent pre vytvorenie textového poľa.
+ *
+ * @param value - aktuálna hodnota textového poľa
+ * @param onValueChange - funkcia volaná pri zmene hodnoty
+ * @param labelResId - id reťazca zdroja pre popis textového poľa
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
+ */
 @Composable
 fun VytvorTextField(
     value: String,
@@ -76,6 +98,11 @@ fun VytvorTextField(
     )
 }
 
+/**
+ * Komponent pre zobrazenie zoznamu textov.
+ *
+ * @param textResourceIds - Zoznam id reťazcov zdrojov pre zobrazenie textov
+ */
 @Composable
 fun TextList(textResourceIds: List<Int>) {
     Column(

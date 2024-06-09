@@ -32,7 +32,17 @@ import com.example.vamz_sem_praca.utvary.ObrazokSTextomASrdcom
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.SrdceButton
 
+/**
+ * Trieda predstavujúca obrazovku obľúbených receptov.
+ */
 class OblubeneRecepty {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky obľúbených receptov.
+     *
+     * @param navController - navigácia medzo obrazovkami v aplikácii
+     * @param viewModel - viewModel pre získanie dát obľúbených receptov
+     */
     @Composable
     fun OblubeneReceptyStrana(
         navController: NavHostController,
@@ -100,6 +110,9 @@ class OblubeneRecepty {
         )
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky obľúbených receptov.
+     */
     @Preview(showBackground = true)
     @Composable
     fun OblubeneReceptyPreview() {

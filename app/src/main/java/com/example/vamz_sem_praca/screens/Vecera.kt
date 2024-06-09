@@ -34,7 +34,17 @@ import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import com.example.vamz_sem_praca.utvary.VytvorButton
 import com.example.vamz_sem_praca.utvary.SrdceButton
 
+/**
+ * Trieda pre obrazovku večere.
+ */
 class Vecera {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky večere.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param viewModel - viewModel pre obľúbené recepty
+     */
     @Composable
     fun VeceraStrana(
         navController: NavHostController,
@@ -83,6 +93,12 @@ class Vecera {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka s textom a srdcom pre cestoviny.
+     *
+     * @param viewModel - viewModel pre obľúbené recepty
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun ObrazokCestoviny(
         viewModel: FavReceptyViewModel,
@@ -101,6 +117,9 @@ class Vecera {
         )
     }
 
+    /**
+     * Funkcia pre náhľad na obrazovky večere.
+     */
     @Preview(showBackground = true)
     @Composable
     fun VeceraPreview() {

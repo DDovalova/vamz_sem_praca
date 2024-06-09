@@ -36,10 +36,21 @@ import com.example.vamz_sem_praca.utvary.UpravaCisla
 import com.example.vamz_sem_praca.utvary.ZaokruhliCislo
 import kotlinx.coroutines.launch
 
-/*
-Podobný návrh z cvičenia 5
+/**
+ * Trieda pre prevod jednotiek hrnčekov na gramy.
+ *
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ * @param receptViewModel - viewModel pre získanie dát receptu
+ * (podobný návrh z cvičenia 5)
  */
 class PrevodHnaG {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky pre prevod jednotiek hrnčekov na gramy.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     * @param receptViewModel - viewModel pre získanie dát receptu
+     */
     @Composable
     fun PrevodJednotiekHrncek(
         navController: NavHostController,
@@ -113,7 +124,11 @@ class PrevodHnaG {
     }
 
     /**
-     * Výpočet množstva z hrnčeka na gram na základe vloženej hodnoty používateľa
+     * Výpočet množstva z hrnčekov na gramy na základe vloženej hodnoty používateľa.
+     *
+     * @param amount - množstvo vložené používateľom
+     * @param roundUp - indikátor, či sa má výsledok zaokrúhliť nahor
+     * @return vypočítané množstvo gramov
      */
     fun VypocetHnaG(amount: Double, roundUp: Boolean): String {
         var gram = amount * 150
@@ -123,6 +138,9 @@ class PrevodHnaG {
         return NumberFormat.getNumberInstance().format(gram)
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky pre prevod jednotiek hrnčekov na gramy.
+     */
     @Preview(showBackground = true)
     @Composable
     fun PrevodJednotiekGramPreview() {

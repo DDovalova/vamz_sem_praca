@@ -34,7 +34,16 @@ import com.example.vamz_sem_praca.utvary.TextList
 import com.example.vamz_sem_praca.utvary.VrchnyPanel
 import kotlinx.coroutines.launch
 
+/**
+ * Trieda predstavujúca obrazovku receptu pre polievku.
+ */
 class Polievka {
+
+    /**
+     * Funkcia pre zobrazenie obrazovky receptu pre polievku.
+     *
+     * @param navController - navigácia medzi obrazovkami v aplikácii
+     */
     @Composable
     fun PolievkaStrana(
         navController: NavHostController
@@ -137,6 +146,9 @@ class Polievka {
         )
     }
 
+    /**
+     * Funkcia pre zobrazenie obrázka receptu pre polievku.
+     */
     @Composable
     fun ObrazokPolievka(
     ) {
@@ -152,6 +164,9 @@ class Polievka {
         )
     }
 
+    /**
+     * Funkcia pre náhľad obrazovky receptu pre polievku.
+     */
     @Preview(showBackground = true)
     @Composable
     fun PolievkaPreview() {

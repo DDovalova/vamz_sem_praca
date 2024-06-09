@@ -36,6 +36,13 @@ import com.example.vamz_sem_praca.data.FavReceptyViewModel
 import com.example.vamz_sem_praca.ui.theme.Mangova
 import androidx.compose.material3.TextButton
 
+/**
+ * Komponent pre navigačné tlačidlo.
+ *
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ * @param destination - funkcia, ktorá vracia cieľovú obrazovku ako reťazec
+ * @param buttonText - text zobrazený na tlačidle
+ */
 @Composable
 fun NavigateButton(
     navController: NavHostController,
@@ -52,6 +59,15 @@ fun NavigateButton(
     }
 }
 
+
+/**
+ * Komponent pre navigačné tlačidlo s obľúbeným receptom.
+ *
+ * @param recepty - obľúbený recept
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ * @param destination - funkcia, ktorá prijíma názov receptu a vracia cieľovú obrazovku
+ * @param buttonText Text zobrazený na tlačidle.
+ */
 @Composable
 fun NavigateButtonFavRecept(
     recepty: FavRecepty,
@@ -72,6 +88,11 @@ fun NavigateButtonFavRecept(
     }
 }
 
+/**
+ * Komponent pre tlačidlo na vytvorenie nového receptu.
+ *
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ */
 @Composable
 fun VytvorButton(
     navController: NavHostController
@@ -99,6 +120,13 @@ fun VytvorButton(
     }
 }
 
+/**
+ * Komponenta pre tlačidlo "Srdce" pre obľúbené recepty.
+ *
+ * @param viewModel Inštancia [FavReceptyViewModel]
+ * @param recepty - recept, ktorý môže byť označený ako obľúbený
+ * @param navController - navigácia medzi obrazovkami v aplikácii
+ */
 @Composable
 fun SrdceButton(
     viewModel: FavReceptyViewModel,
@@ -127,25 +155,34 @@ fun SrdceButton(
     }
 }
 
-
- @Composable
-    fun ViacButton(onClick: () -> Unit) {
-        FloatingActionButton(
-            onClick = onClick,
-            containerColor = Mangova,
-            contentColor = Color.White,
-            modifier = Modifier
-                .padding(16.dp)
-        ) {
-            Icon(
-                Icons.Filled.Add,
-                contentDescription = stringResource(R.string.pridaj),
-                modifier = Modifier
-                    .size(30.dp)
-            )
-        }
+/**
+ * Komponenta pre tlačidlo "Viac" s pridaním novej položky.
+ *
+ * @param onClick - funkcia vykonaná po kliknutí na tlačidlo
+ */
+@Composable
+fun ViacButton(onClick: () -> Unit) {
+    FloatingActionButton(
+         onClick = onClick,
+         containerColor = Mangova,
+         contentColor = Color.White,
+         modifier = Modifier
+             .padding(16.dp)
+    ) {
+    Icon(
+         Icons.Filled.Add,
+         contentDescription = stringResource(R.string.pridaj),
+         modifier = Modifier
+             .size(30.dp)
+        )
     }
+}
 
+/**
+ * Komponenta pre tlačidlo s tromi bodkami a dialógom.
+ *
+ * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreVertButton(modifier: Modifier = Modifier) {
