@@ -43,7 +43,7 @@ import com.example.vamz_sem_praca.data.ReceptViewModel
 
 
 /**
- * Komponent pre vrchný panel aplikácie.
+ * Funkcia pre vrchný panel aplikácie.
  *
  * @param nazovStrany - názov aktuálnej stránky
  * @param onMenuClick - funkcia volaná pri kliknutí na menu
@@ -124,7 +124,7 @@ fun VrchnyPanel(
 }
 
 /**
- * Komponent pre bočný menu panel.
+ * Funkcia pre bočný menu panel.
  *
  * @param navController - navigácia medzi obrazovkami v aplikácii
  * @param drawerState - stav menu panela
@@ -285,7 +285,7 @@ fun MenuPanel(
 }
 
 /**
- * Komponenta pre položku menu.
+ * Funkcia pre položku menu.
  *
  * @param text - text položky menu
  * @param navDestination - cieľová obrazovka pre navigáciu

@@ -37,7 +37,7 @@ import com.example.vamz_sem_praca.ui.theme.Mangova
 import androidx.compose.material3.TextButton
 
 /**
- * Komponent pre navigačné tlačidlo.
+ * Funkcia pre navigačné tlačidlo.
  *
  * @param navController - navigácia medzi obrazovkami v aplikácii
  * @param destination - funkcia, ktorá vracia cieľovú obrazovku ako reťazec
@@ -61,7 +61,7 @@ fun NavigateButton(
 
 
 /**
- * Komponent pre navigačné tlačidlo s obľúbeným receptom.
+ * Funkcia pre navigačné tlačidlo s obľúbeným receptom.
  *
  * @param recepty - obľúbený recept
  * @param navController - navigácia medzi obrazovkami v aplikácii
@@ -89,7 +89,7 @@ fun NavigateButtonFavRecept(
 }
 
 /**
- * Komponent pre tlačidlo na vytvorenie nového receptu.
+ * Funkcia pre tlačidlo na vytvorenie nového receptu.
  *
  * @param navController - navigácia medzi obrazovkami v aplikácii
  */
@@ -121,7 +121,7 @@ fun VytvorButton(
 }
 
 /**
- * Komponenta pre tlačidlo "Srdce" pre obľúbené recepty.
+ * Funkcia pre tlačidlo "Srdce" pre obľúbené recepty.
  *
  * @param viewModel Inštancia [FavReceptyViewModel]
  * @param recepty - recept, ktorý môže byť označený ako obľúbený
@@ -156,7 +156,7 @@ fun SrdceButton(
 }
 
 /**
- * Komponenta pre tlačidlo "Viac" s pridaním novej položky.
+ * Funkcia pre tlačidlo "Viac" s pridaním novej položky.
  *
  * @param onClick - funkcia vykonaná po kliknutí na tlačidlo
  */
@@ -179,7 +179,7 @@ fun ViacButton(onClick: () -> Unit) {
 }
 
 /**
- * Komponenta pre tlačidlo s tromi bodkami a dialógom.
+ * Funkcia pre tlačidlo s tromi bodkami a notifikáciou.
  *
  * @param modifier - modifikátor pre prispôsobenie vzhľadu komponentu
  */

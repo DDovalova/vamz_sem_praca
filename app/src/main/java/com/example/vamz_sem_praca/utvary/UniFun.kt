@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.vamz_sem_praca.R
 
 /**
- * Komponent pre úpravu číselnej hodnoty.
+ * Funkcia pre úpravu číselnej hodnoty.
  *
  * @param value - aktuálna hodnota textového poľa
  * @param onValueChange - funkcia volaná pri zmene hodnoty
@@ -44,7 +44,7 @@ fun UpravaCisla(
 }
 
 /**
- * Komponent pre prepínač zaokrúhľovania čísla.
+ * Funkcia pre prepínač zaokrúhľovania čísla.
  *
  * @param roundUp - boolean hodnota označujúca, či sa má číslo zaokrúhliť
  * @param onRoundUpChanged - funkcia volaná pri zmene stavu prepínača
@@ -74,7 +74,7 @@ fun ZaokruhliCislo(
 }
 
 /**
- * Komponent pre vytvorenie textového poľa.
+ * Funkcia pre vytvorenie textového poľa.
  *
  * @param value - aktuálna hodnota textového poľa
  * @param onValueChange - funkcia volaná pri zmene hodnoty
@@ -99,7 +99,7 @@ fun VytvorTextField(
 }
 
 /**
- * Komponent pre zobrazenie zoznamu textov.
+ * Funkcia pre zobrazenie zoznamu textov.
  *
  * @param textResourceIds - Zoznam id reťazcov zdrojov pre zobrazenie textov
  */

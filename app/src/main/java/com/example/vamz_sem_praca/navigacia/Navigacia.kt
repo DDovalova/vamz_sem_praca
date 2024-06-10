@@ -24,7 +24,7 @@ import com.example.vamz_sem_praca.screens.Vecera
 import com.example.vamz_sem_praca.utvary.MenuPanel
 
 /**
- * Komponent pre navigáciu v aplikácii.
+ * Funkcia pre navigáciu v aplikácii.
  *
  * @param viewModel inštancia [FavReceptyViewModel] pre spracovanie obľúbených receptov.
  */

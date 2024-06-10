@@ -29,7 +29,7 @@ class FavReceptyViewModel : ViewModel() {
     }
 
     /**
-     * Skontroluje, či je recept obľúbený.
+     * Funkcia skontroluje, či je recept obľúbený.
      *
      * @param recepty - recept, ktorého obľúbený stav sa má skontrolovať
      * @return 'true' ak je recept obľúbený, inak 'false'
