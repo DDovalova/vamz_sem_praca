@@ -66,7 +66,7 @@ fun NavigateButton(
  * @param recepty - obľúbený recept
  * @param navController - navigácia medzi obrazovkami v aplikácii
  * @param destination - funkcia, ktorá prijíma názov receptu a vracia cieľovú obrazovku
- * @param buttonText Text zobrazený na tlačidle.
+ * @param buttonText - text zobrazený na tlačidle
  */
 @Composable
 fun NavigateButtonFavRecept(
